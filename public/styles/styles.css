@@ -1,3 +1,5 @@
-.list-group-item {
-  line-height: 2.5;
+.user-home-jumbo {
+  background-image: url(../images/user-home-jumboton-image.jpg);
+  background-size: cover;
+  height: 500px;
 }
