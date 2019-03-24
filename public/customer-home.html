@@ -15,16 +15,17 @@
 </head>
 <body>
   <header>
-    <div class="navbar navbar-dark bg-dark shadow-sm">
+    <nav class="navbar fixed-top navbar-dark bg-primary">
       <div class="container d-flex justify-content-between">
         <a href="#" class="navbar-brand d-flex align-items-center">
           <strong><i class="fas fa-film"></i>      MegaFlix</strong>
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+        <form class="form-inline">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search for movies..." aria-label="Search">
+          <button class="btn btn-warning my-2 my-sm-0" type="submit">Search</button>
+        </form>
       </div>
-    </div>
+    </nav>
   </header>
   
   <main role="main">
@@ -42,31 +43,32 @@
     <div class="container">
       <div class="row">
         <div class="col 12">
-          <h3>Action & Adventure</h3>
+          <h3 class="float-left">Action</h3>
+          <p class="float-right">See all Action movies</p>
         </div>
       </div>
       <div class="row">
         <div class="col-3">
           <div class="card" style="width: 18rem;">
-            <img src="./images/bad-boys.jpg" class="card-img-top" alt="...">
+            <img src="./images/aliens.png" class="card-img-top" alt="aliens">
             <div class="card-body">
-              <p class="card-text text-center">Bad Boys</p>
+              <p class="card-text text-center">Aliens</p>
             </div>
           </div>
         </div>
         <div class="col-3">
           <div class="card" style="width: 18rem;">
-            <img src="./images/mission-impossible.jpg" class="card-img-top" alt="mission-impossible" width="150px">
+            <img src="./images/beverly-hills-cop.jpg" class="card-img-top" alt="beverly-hills-cop">
             <div class="card-body">
-              <p class="card-text text-center">Mission Impossible</p>
+              <p class="card-text text-center">Beverly Hills Cop</p>
             </div>
           </div>
         </div>
         <div class="col-3">
           <div class="card" style="width: 18rem;">
-            <img src="./images/speed.jpg" class="card-img-top" alt="...">
+            <img src="./images/indiana-jones.jpg" class="card-img-top" alt="raiders-of-the-lost-ark">
             <div class="card-body">
-              <p class="card-text text-center">Speed</p>
+              <p class="card-text text-center">Indiana Jones and the Raiders of the Lost Ark</p>
             </div>
           </div>
         </div>
@@ -81,55 +83,94 @@
       </div>
       <div class="row mt-5">
         <div class="col 12">
-          <h3>Esoteric</h3>
+          <h3 class="float-left">Comedy</h3>
+          <p class="float-right">See all Comedy movies</p>
         </div>
       </div>
       <div class="row">
         <div class="col-3">
           <div class="card" style="width: 18rem;">
-            <img src="./images/secondhand-lions.jpg" class="card-img-top" alt="...">
+            <img src="./images/ace-ventura.jpg" class="card-img-top" alt="ace-ventura">
             <div class="card-body">
-              <p class="card-text text-center">Secondhand Lions</p>
+              <p class="card-text text-center">Ace Ventura: Pet Detective</p>
             </div>
           </div>
         </div>
         <div class="col-3">
           <div class="card" style="width: 18rem;">
-            <img src="./images/secondhand-lions.jpg" class="card-img-top" alt="...">
+            <img src="./images/dumb-and-dumber.png" class="card-img-top" alt="dumb-and-dumber">
             <div class="card-body">
-              <p class="card-text text-center">Secondhand Lions</p>
+              <p class="card-text text-center">Dumb and Dumber</p>
             </div>
           </div>
         </div>
         <div class="col-3">
           <div class="card" style="width: 18rem;">
-            <img src="./images/secondhand-lions.jpg" class="card-img-top" alt="...">
+            <img src="./images/ferris-bueller.png" class="card-img-top" alt="ferris-bueller">
             <div class="card-body">
-              <p class="card-text text-center">Secondhand Lions</p>
+              <p class="card-text text-center">Ferris Bueller's Day Off</p>
             </div>
           </div>
         </div>
         <div class="col-3">
           <div class="card" style="width: 18rem;">
-            <img src="./images/secondhand-lions.jpg" class="card-img-top" alt="...">
+            <img src="./images/sister-act.jpg" class="card-img-top" alt="sister-act">
             <div class="card-body">
-              <p class="card-text text-center">Secondhand Lions</p>
+              <p class="card-text text-center">Sister Act</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col 12">
+          <h3 class="float-left">Drama</h3>
+          <p class="float-right">See all Drama movies</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3">
+          <div class="card" style="width: 18rem;">
+            <img src="./images/rain-man.png" class="card-img-top" alt="rain-man">
+            <div class="card-body">
+              <p class="card-text text-center">Rain Man</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="card" style="width: 18rem;">
+            <img src="./images/shawshank-redemption.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text text-center">Shawshank Redemption</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="card" style="width: 18rem;">
+            <img src="./images/fatal-attraction.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text text-center">Fatal Attraction</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="card" style="width: 18rem;">
+            <img src="./images/driving-miss-daisy.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text text-center">Driving Miss Daisy</p>
             </div>
           </div>
         </div>
       </div>
     </div>
-    </div>
-  
   </main>
   
-  <footer class="text-muted">
+  <footer class="text-muted mt-5">
     <div class="container">
       <p class="float-right">
         <a href="#">Back to top</a>
       </p>
-      <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-      <p>New to Bootstrap? <a href="https://getbootstrap.com/">Visit the homepage</a> or read our <a href="/docs/4.3/getting-started/introduction/">getting started guide</a>.</p>
+      <p>Contact MegaFlix || Find a Store Near You</p>
+      
     </div>
   </footer>
 </body>
