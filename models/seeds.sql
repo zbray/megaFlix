@@ -1,4 +1,3 @@
-
 INSERT INTO films (title, year, genre, price, format)
 VALUES ("20,000 Leagues Under the Sea", "1954", "Adventure Drama Family", 2.99, "VHS");
 VALUES ("2001: A Space Odyssey", "1968", "Adventure Sci-Fi", 2.99, "VHS");
