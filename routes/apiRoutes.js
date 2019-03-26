@@ -2,8 +2,13 @@ var db = require("../models");
 
 module.exports = function(app) {
   // Get all examples
-  app.get("/api/examples", function(req, res) {
-    db.films.findAll({}).then(function(result) {
+  app.get("/api/:movie", function(req, res) {
+    var movieSearch = req.params.movie;
+    db.Film.findAll({
+      where: {
+        title: movieSearch
+      }
+    }).then(function(result) {
       res.json(result);
     });
   });
