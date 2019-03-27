@@ -55,7 +55,7 @@ h1{
   border: none;
   outline: none;
   height: 40px;
-  background: #fb2525;
+  background: darkorange;
   color: #fff;
   font-size: 18px;
 }
@@ -76,7 +76,7 @@ h1{
 
 .loginbox a:hover
 {
-  color: #fb2525
+  color: darkorange
 
 }
 
