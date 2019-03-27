@@ -2,3 +2,4 @@ models/index.js
 node_modules
 app.js
 index.js
+users.js
