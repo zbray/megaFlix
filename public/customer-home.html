@@ -18,8 +18,9 @@
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
   </script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-  crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
 </head>
 
 <body>
@@ -58,7 +59,7 @@
       </div>
       <div class="row">
         <div class="col-3">
-          <div class="card" id="aliens">
+          <div class="card" id="aliensimg">
             <img src="./images/aliens.png" class="card-img-top" alt="aliens">
             <div class="card-body">
               <p class="card-text text-center">Aliens</p>
@@ -66,7 +67,7 @@
           </div>
         </div>
         <div class="col-3">
-          <div class="card" id="beverly">
+          <div class="card" id="beverlyimg">
             <img src="./images/beverly-hills-cop.jpg" class="card-img-top" alt="beverly-hills-cop">
             <div class="card-body">
               <p class="card-text text-center">Beverly Hills Cop</p>
@@ -74,7 +75,7 @@
           </div>
         </div>
         <div class="col-3">
-          <div class="card" id="indiana">
+          <div class="card" id="indianaimg">
             <img src="./images/indiana-jones.jpg" class="card-img-top" alt="raiders-of-the-lost-ark">
             <div class="card-body">
               <p class="card-text text-center">Indiana Jones and the Raiders of the Lost Ark</p>
@@ -82,7 +83,7 @@
           </div>
         </div>
         <div class="col-3">
-          <div class="card" id="die">
+          <div class="card" id="dieimg">
             <img src="./images/die-hard.png" class="card-img-top" alt="...">
             <div class="card-body">
               <p class="card-text text-center">Die Hard</p>
@@ -98,7 +99,7 @@
       </div>
       <div class="row">
         <div class="col-3">
-          <div class="card" id="ace">
+          <div class="card" id="aceimg">
             <img src="./images/ace-ventura.jpg" class="card-img-top" alt="ace-ventura">
             <div class="card-body">
               <p class="card-text text-center">Ace Ventura: Pet Detective</p>
@@ -106,7 +107,7 @@
           </div>
         </div>
         <div class="col-3">
-          <div class="card" id="dumb">
+          <div class="card" id="dumbimg">
             <img src="./images/dumb-and-dumber.png" class="card-img-top" alt="dumb-and-dumber">
             <div class="card-body">
               <p class="card-text text-center">Dumb and Dumber</p>
@@ -114,7 +115,7 @@
           </div>
         </div>
         <div class="col-3">
-          <div class="card" id="ferris">
+          <div class="card" id="ferrisimg">
             <img src="./images/ferris-bueller.png" class="card-img-top" alt="ferris-bueller">
             <div class="card-body">
               <p class="card-text text-center">Ferris Bueller's Day Off</p>
@@ -122,7 +123,7 @@
           </div>
         </div>
         <div class="col-3">
-          <div class="card" id="sister">
+          <div class="card" id="sisterimg">
             <img src="./images/sister-act.jpg" class="card-img-top" alt="sister-act">
             <div class="card-body">
               <p class="card-text text-center">Sister Act</p>
@@ -138,7 +139,7 @@
       </div>
       <div class="row">
         <div class="col-3">
-          <div class="card" id="rain">
+          <div class="card" id="rainimg">
             <img src="./images/rain-man.png" class="card-img-top" alt="rain-man">
             <div class="card-body">
               <p class="card-text text-center">Rain Man</p>
@@ -146,22 +147,22 @@
           </div>
         </div>
         <div class="col-3">
-          <div class="card">
-            <img src="./images/shawshank-redemption.png" id="shawshank"class="card-img-top" alt="...">
+          <div class="card" id="shawshankimg">
+            <img src="./images/shawshank-redemption.png" class="card-img-top" alt="...">
             <div class="card-body">
               <p class="card-text text-center">Shawshank Redemption</p>
             </div>
           </div>
         </div>
         <div class="col-3">
-          <div class="card" id="fatal">
+          <div class="card" id="fatalimg">
             <img src="./images/fatal-attraction.jpg" class="card-img-top" alt="...">
             <div class="card-body">
               <p class="card-text text-center">Fatal Attraction</p>
             </div>
           </div>
         </div>
-        <div class="col-3" id="driving">
+        <div class="col-3" id="drivingimg">
           <div class="card">
             <img src="./images/driving-miss-daisy.jpg" class="card-img-top" alt="...">
             <div class="card-body">
@@ -175,25 +176,256 @@
 
   <!-- Modal Below -->
 
-  <div class="modal fade" id="myModal" role="dialog">
+  <div class="modal fade" id="aliens" role="dialog">
     <div class="modal-dialog">
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Aliens</h4>
         </div>
         <div class="modal-body">
-          <p>Some text in the modal.</p>
+          <img src="images/aliens.png">
+          <p>James Cameron, 1986, 137 min </p>
+          <p>Ellen Ripley is rescued by a deep salvage team after being in hypersleep for 57 years. The moon that the
+            Nostromo visited has been colonized, but contact is lost. This time, colonial marines have impressive
+            firepower, but will that be enough?</p>
+          <button>Reserve Film</button>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
-
     </div>
   </div>
 
+  <div class="modal fade" id="beverly" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Beverly Hills Cop</h4>
+        </div>
+        <div class="modal-body">
+          <img src="images/beverly-hills-cop.jpg">
+          <p>Martin Brest, 1984 </p>
+          <p>A freewheeling Detroit cop pursuing a murder investigation finds himself dealing with the very different
+            culture of Beverly Hills.</p>
+          <button>Reserve Film</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="indiana" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Indiana Jones and the Raiders of the Lost Ark</h4>
+        </div>
+        <div class="modal-body">
+          <img src="images/aliens.png">
+          <p>Steven Spielberg, 1981, 115 minutes</p>
+          <p>In 1936, archaeologist and adventurer Indiana Jones is hired by the U.S. government to find the Ark of the
+            Covenant before Adolf Hitler's Nazis can obtain its awesome powers.</p>
+          <button>Reserve Film</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="die" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Die Hard</h4>
+        </div>
+        <div class="modal-body">
+          <img src="images/die-hard.png">
+          <p>John McTiernan, 1988, 132 min</p>
+          <p>An NYPD officer tries to save his wife and several others taken hostage by German terrorists during a
+            Christmas party at the Nakatomi Plaza in Los Angeles.</p>
+          <button>Reserve Film</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="ace" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Ace Ventura: Pet Detective</h4>
+        </div>
+        <div class="modal-body">
+          <img src="images/ace-ventura.jpg">
+          <p>Tom Shadyac, 1994, 86 min</p>
+          <p>A goofy detective specializing in animals goes in search of the missing mascot of the Miami Dolphins.</p>
+          <button>Reserve Film</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="dumb" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Dumb and Dumber</h4>
+        </div>
+        <div class="modal-body">
+          <img src="images/dumb-and-dumber.png">
+          <p>Peter Farrelly and Bobby Farrelly, 1994, 107 min</p>
+          <p>The cross-country adventures of 2 good-hearted but incredibly stupid friends.</p>
+          <button>Reserve Film</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="ferris" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Ferris Bueller's Day Off</h4>
+        </div>
+        <div class="modal-body">
+          <img src="images/ferris-bueller.png">
+          <p>John Hughes, 1986, 103 min</p>
+          <p>A high school wise guy is determined to have a day off from school, despite what the Principal thinks of
+            that.</p>
+          <button>Reserve Film</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="sister" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Sister Act</h4>
+        </div>
+        <div class="modal-body">
+          <img src="images/sister-act.jpg">
+          <p>Emile Ardolino, 1992, 100 min</p>
+          <p>When a worldly singer witnesses a mob crime, the police hide her as a nun in a traditional convent where
+            she has trouble fitting in.</p>
+          <button>Reserve Film</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="rain" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Rain Man</h4>
+        </div>
+        <div class="modal-body">
+          <img src="images/rain-man.png">
+          <p>Barry Levinson, 1988, 133 minutes</p>
+          <p>Selfish yuppie Charlie Babbitt's father left a fortune to his savant brother Raymond and a pittance to
+            Charlie; they travel cross-country.</p>
+          <button>Reserve Film</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="shawshank" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Shawshank Redemption</h4>
+        </div>
+        <div class="modal-body">
+          <img src="images/shawshank-redemption.png">
+          <p>Frank Darabont, 1994, 142 minutes</p>
+          <p>Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of
+            common decency.</p>
+          <button>Reserve Film</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="fatal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Fatal Attraction</h4>
+        </div>
+        <div class="modal-body">
+          <img src="images/fatal-attraction.jpg">
+          <p>Adrian Lyne, 1987, 119 minutes</p>
+          <p>A married man's one-night stand comes back to haunt him when that lover begins to stalk him and his family.
+          </p>
+          <button>Reserve Film</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="driving" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Driving Miss Daisy</h4>
+        </div>
+        <div class="modal-body">
+          <img src="images/driving-miss-daisy.jpg">
+          <p>Steven Spielberg, 1981, 115 minutes</p>
+          <p>An old Jewish woman and her African-American chauffeur in the American South have a relationship that grows
+            and improves over the years.</p>
+          <button>Reserve Film</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <footer class="text-muted mt-5">
     <div class="container">
@@ -207,13 +439,82 @@
 
 
   <script>
-    $(".card-img-top").on("click", function () {
+    $("#aliensimg").on("click", function () {
       event.preventDefault();
       // alert(JSON.stringify(this));
       console.log(JSON.stringify(this));
-      $("#myModal").modal('toggle');
-      $('#chosenFilm').modal('toggle')
+      $("#aliens").modal('toggle');
     });
+
+    $("#beverlyimg").on("click", function () {
+      event.preventDefault();
+      // alert(JSON.stringify(this));
+      console.log(JSON.stringify(this));
+      $("#beverly").modal('toggle');
+    });
+
+    $("#indianaimg").on("click", function () {
+      event.preventDefault();
+      // alert(JSON.stringify(this));
+      console.log(JSON.stringify(this));
+      $("#indiana").modal('toggle');
+    });
+    $("#dieimg").on("click", function () {
+      event.preventDefault();
+      // alert(JSON.stringify(this));
+      console.log(JSON.stringify(this));
+      $("#die").modal('toggle');
+    });
+    $("#aceimg").on("click", function () {
+      event.preventDefault();
+      // alert(JSON.stringify(this));
+      console.log(JSON.stringify(this));
+      $("#ace").modal('toggle');
+    });
+    $("#dumbimg").on("click", function () {
+      event.preventDefault();
+      // alert(JSON.stringify(this));
+      console.log(JSON.stringify(this));
+      $("#dumb").modal('toggle');
+    });
+    $("#ferrisimg").on("click", function () {
+      event.preventDefault();
+      // alert(JSON.stringify(this));
+      console.log(JSON.stringify(this));
+      $("#ferris").modal('toggle');
+    });
+    $("#sisterimg").on("click", function () {
+      event.preventDefault();
+      // alert(JSON.stringify(this));
+      console.log(JSON.stringify(this));
+      $("#sister").modal('toggle');
+    });
+    $("#rainimg").on("click", function () {
+      event.preventDefault();
+      // alert(JSON.stringify(this));
+      console.log(JSON.stringify(this));
+      $("#rain").modal('toggle');
+    });
+    $("#shawshankimg").on("click", function () {
+      event.preventDefault();
+      // alert(JSON.stringify(this));
+      console.log(JSON.stringify(this));
+      $("#shawshank").modal('toggle');
+    });
+    $("#fatalimg").on("click", function () {
+      event.preventDefault();
+      // alert(JSON.stringify(this));
+      console.log(JSON.stringify(this));
+      $("#fatal").modal('toggle');
+    });
+    $("#drivingimg").on("click", function () {
+      event.preventDefault();
+      // alert(JSON.stringify(this));
+      console.log(JSON.stringify(this));
+      $("#driving").modal('toggle');
+    });
+
+
   </script>
 
 
