@@ -3,8 +3,8 @@ console.log("hello!");
 
 var posterURL;
 
-function OMDBSearch(queryTerm) {
-  var queryURL = "http://www.omdbapi.com/?t=" + queryTerm + "&apikey=7144e1fa";
+function OMDBPosterSearch(movieTitle) {
+  var queryURL = "http://www.omdbapi.com/?t=" + movieTitle + "&apikey=7144e1fa";
   console.log(queryURL);
   $.ajax({
     url: queryURL,
@@ -36,11 +36,10 @@ function OMDBSearch(queryTerm) {
 
 $("#db-search-btn").on("click", function () {
   event.preventDefault();
-  console.log("clicked!");
-  var dbSearch = $("#db-title-search")
+  var searchedTitle = $("#db-title-search")
     .val()
     .trim();
-  console.log("searched title: " + dbSearch);
+  console.log("searched title: " + searchedTitle);
   // searchedTitle = searchedTitle.replace(/\s+/g, "").toLowerCase();
 
   $.get("/api/" + dbSearch, function (data) {
@@ -53,7 +52,7 @@ $("#db-search-btn").on("click", function () {
         "<h2> Nothing was found with your search. Try again. </h2>"
       );
     } else {
-      OMDBSearch(dbSearch);
+      OMDBPosterSearch(dbSearch);
       $("#well-section").append("<h2>" + data[0].title + "</h2>");
       $("#well-section").append("<h3>Year of Release: " + data[0].year + "</h3>");
       $("#well-section").append("<h3>Genre: " + data[0].genre + "</h3>");
