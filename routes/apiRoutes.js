@@ -29,7 +29,9 @@ module.exports = function(app) {
   app.get("/api/:movie", function(req, res) {
     db.Film.findAll({
       where: {
-        title: req.params.movie
+        title: {
+          $like: "%" + req.params.movie + "%"
+        }
       }
     }).then(function(movieResult) {
       res.json(movieResult);
