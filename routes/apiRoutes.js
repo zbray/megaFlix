@@ -75,7 +75,8 @@ module.exports = function(app) {
         where: {
           id: req.body.id
         }
-      }).then(function(updatedMovie) {
+      }
+    ).then(function(updatedMovie) {
       res.json(updatedMovie);
     });
   });
