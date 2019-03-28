@@ -24,12 +24,23 @@ $(document).ready(function() {
           method: "GET"
         }).then(function(OMDBresponse) {
           posterURL = OMDBresponse.Poster;
-          var newCol = $("<div class='col-3'>");
-          newCol.append("<div class='card' id='" + genreMovies[i].title + "-img'>");
-          newCol.append("<img src='" + posterURL + "' class='card-img-top' alt='" + genreMovies[i].title + "'>");
-          newCol.append("<div class='card-body'>");
-          newCol.append("<p class='card-text text-center'>" + genreMovies[i].title + "</p>");
-          newCol.append("</div> </div> </div>");
+          var newCol = $("<div></div>");
+          newCol.attr("class", "col-3");
+          var newCard = $("<div></div>");
+          newCard.attr("class", "card");
+          newCard.attr("id", genreMovies[i].title + "-img");
+          var newPoster = $("<img>");
+          newPoster.attr("class", "card-img-top");
+          newPoster.attr("alt", genreMovies[i].title);
+          newPoster.attr("src", posterURL);
+          var newCardBody = $("<div></div>");
+          newCardBody.attr("class", "card-body");
+          var newCardText = $("<p></p>").text(genreMovies[i].title);
+          newCardText.attr("class", "card-text text-center")
+          newCardBody.append(newCardText);
+          newCard.append(newPoster, newCardBody);
+          newCol.append(newCard);
+          console.log("Testing newCol: ", newCol);
           actionRow.append(newCol);
         });
       }
