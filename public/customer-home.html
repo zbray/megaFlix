@@ -184,7 +184,7 @@
           <h4 class="modal-title">Aliens</h4>
         </div>
         <div class="modal-body">
-          <img src="images/aliens.png">
+          <img src="images/aliens.png" width="205px">
           <p>James Cameron, 1986, 137 min </p>
           <p>Ellen Ripley is rescued by a deep salvage team after being in hypersleep for 57 years. The moon that the
             Nostromo visited has been colonized, but contact is lost. This time, colonial marines have impressive
@@ -206,11 +206,24 @@
           <h4 class="modal-title">Beverly Hills Cop</h4>
         </div>
         <div class="modal-body">
-          <img src="images/beverly-hills-cop.jpg">
-          <p>Martin Brest, 1984 </p>
-          <p>A freewheeling Detroit cop pursuing a murder investigation finds himself dealing with the very different
-            culture of Beverly Hills.</p>
-          <button>Reserve Film</button>
+          <div>
+            <div class="row">
+              <div class="col-md-6">
+                <img src="images/beverly-hills-cop.jpg" width="205px">
+              </div>
+              <div class="col-md-6">
+                <p>Martin Brest, 1984 </p>
+                <p>A freewheeling Detroit cop pursuing a murder investigation finds himself dealing with the very
+                  different
+                  culture of Beverly Hills.</p>
+                <br>
+              </div>
+            </div>
+            <div class="row">
+              <button>Reserve Film</button>
+            </div>
+          </div>
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -385,6 +398,9 @@
     </div>
   </div>
 
+
+
+  
   <div class="modal fade" id="fatal" role="dialog">
     <div class="modal-dialog">
       <!-- Modal content-->
@@ -513,8 +529,6 @@
       console.log(JSON.stringify(this));
       $("#driving").modal('toggle');
     });
-
-
   </script>
 
 
