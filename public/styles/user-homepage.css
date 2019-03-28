@@ -1,0 +1,17 @@
+.user-home-jumbo {
+  background-image: url(../images/user-home-jumboton-image.jpg);
+  background-size: cover;
+  height: 500px;
+}
+
+nav {
+  background-color: #1641A8;
+}
+
+body {
+  background-color: #FFA70B;
+}
+
+.card-text{
+  height:100%;
+}

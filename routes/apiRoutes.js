@@ -2,7 +2,6 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  
   // GET route to retrieve all movies from db. This will be used on
   // user homepage and manager page
   app.get("/api/movies", function(req, res) {
