@@ -38,6 +38,11 @@ $(document).ready(function() {
     });
   }
 
+  // ============================
+  // SET UP CLICK EVENT
+  // ============================
+  
+  // When user clicks on search button, run the movieSearch function
   $("#db-search-btn").on("click", function() {
     event.preventDefault();
     movieSearch(filmTitle.val());
