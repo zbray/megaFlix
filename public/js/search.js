@@ -34,7 +34,7 @@ $(document).ready(function() {
           $("#well-section").append("<h3>Format: " + movieArray[i].format + "</h3>");
           $("#well-section").append("<img src='" + posterURL + "'>");
         });
-        }
+      }
     });
   }
 
