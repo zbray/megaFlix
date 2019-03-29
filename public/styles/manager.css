@@ -1,47 +1,231 @@
-* {
-    font-size:13pt;font-weight:normal;
+/* CRUD - MODAL */
+body {
+    font-family: "courier new";
+    font-size: 13px;
+    background-color: black;
 }
 
-table {
-    border-collapse: collapse;
-  }
-  
-  td {
-    border: 6px double darkorange;
-    padding: 10px;
-  }
-  
-  ol {
-    margin-left: 1em;
-  }
-  
-  body {
-    margin: 1em;
-    background: 000;
-    font-family: 'courier new';
+.table-wrapper {
+    background: black;
+    padding: 20px 15px;
+    border-radius: 3px;
+    box-shadow: 0 10px 1px rgba(0, 0, 0, .05);
+    color: darkorange
+}
+
+.table-title {
+    padding-bottom: 15px;
+    background: darkorange;
+    color: black;
+    padding: 16px 30px;
+    margin: -20px -25px 10px;
+    border-radius: 3px 3px 0 0;
+}
+
+.table-title h2 {
+    margin: 5px 0 0;
+    font-size: 24px;
+    font-weight: bold;
+
+}
+
+.table-title .btn-group {
+    float: right;
+}
+
+.table-title .btn {
+    color: black;
+    float: right;
+    font-size: 13px;
+    font-weight: bold;
+    border: none;
+    min-width: 50px;
+    border-radius: 2px;
+    border: none;
+    outline: none !important;
+    margin-left: 10px;
+}
+
+.table-title .btn i {
+    float: left;
+    font-size: 21px;
+    margin-right: 5px;
     color: darkorange;
-    background: #000400;
-  }
-  
-  a {
-    background: darkorange;
-    color: #223;
+}
+
+.table-title .btn span {
+    float: left;
+    margin-top: 2px;
+}
+
+table.table tr th,
+table.table tr td {
+    border-color: darkorange;
+    padding: 12px 15px;
+    vertical-align: middle;
+}
+
+table.table tr th:first-child {
+    width: 60px;
+}
+
+table.table tr th:last-child {
+    width: 100px;
+}
+
+table.table-striped tbody tr:nth-of-type(odd) {
+    background-color: black;
+}
+
+table.table-striped.table-hover tbody tr:hover {
+    background: black;
+}
+
+table.table th i {
+    font-size: 13px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+table.table td:last-child i {
+    opacity: 0.9;
+    font-size: 22px;
+    margin: 0 5px;
+}
+
+table.table td a {
     font-weight: bold;
-    padding-right: .25em;
-  }
-  
-  .advisory {
+    color: #566787;
+    display: inline-block;
+    text-decoration: none;
+    outline: none !important;
+}
+
+table.table td a:hover {
+    color: black;
+}
+
+table.table td a.edit {
+    color: #FFC107;
+}
+
+table.table td a.delete {
+    color: #F44336;
+}
+
+table.table td i {
+    font-size: 19px;
+}
+
+table.table .avatar {
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+/* Custom checkbox */
+.custom-checkbox {
+    position: relative;
+}
+
+.custom-checkbox input[type="checkbox"] {
+    opacity: 0;
+    position: absolute;
+    margin: 5px 0 0 3px;
+    z-index: 9;
+}
+
+.custom-checkbox label:before {
+    width: 18px;
+    height: 18px;
+}
+
+.custom-checkbox label:before {
+    content: '';
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: text-top;
+    background: white;
+    border: 1px solid #bbb;
+    border-radius: 2px;
+    box-sizing: border-box;
+    z-index: 2;
+}
+
+.custom-checkbox input[type="checkbox"]:checked+label:after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 3px;
+    width: 6px;
+    height: 11px;
+    border: solid #000;
+    border-width: 0 3px 3px 0;
+    transform: inherit;
+    z-index: 3;
+    transform: rotateZ(45deg);
+}
+
+.custom-checkbox input[type="checkbox"]:checked+label:before {
+    border-color: black;
     background: darkorange;
-    color: #223;
-    font-weight: bold;
-    padding-right: .25em;
-  }
-  
-  h1 {
-    text-transform: uppercase;
-    font-weight: bold;
-    color: #000400;
-    background: darkorange;
-    text-align: center;
-  }
-  
+}
+
+.custom-checkbox input[type="checkbox"]:checked+label:after {
+    border-color: black;
+}
+
+.custom-checkbox input[type="checkbox"]:disabled+label:before {
+    color: #b8b8b8;
+    cursor: auto;
+    box-shadow: none;
+    background: black;
+}
+
+/* Modal styles */
+.modal .modal-dialog {
+    max-width: 400px;
+}
+
+.modal .modal-header,
+.modal .modal-footer {
+    padding: 30px 30px;
+    color: darkorange;
+    background: black;
+}
+
+.modal .modal-body {
+    padding: 30px 30px;
+}
+
+.modal .modal-content {
+    border-radius: 3px;
+}
+
+.modal .modal-footer {
+    background: black;
+    border-radius: 0 0 3px 3px;
+}
+
+.modal .modal-title {
+    display: inline-block;
+}
+
+.modal .form-control {
+    border-radius: 2px;
+    box-shadow: none;
+    border-color: darkorange;
+}
+
+.modal textarea.form-control {
+    resize: vertical;
+}
+
+.modal .btn {
+    border-radius: 2px;
+    min-width: 100px;
+}
+
+.modal form label {
+    font-weight: normal;
+}
