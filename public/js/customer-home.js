@@ -5,6 +5,12 @@ $(document).ready(function() {
   var dramaRow = $(".drama-row");
   var musicalRow = $(".musical-row");
   var animatedRow = $(".animated-row");
+
+  // References to various elements of modal
+  var modalTitle = $(".modal-title");
+  var modalPoster = $("#modal-image");
+  var modalInfo = $("#modal-info");
+  var modalPlot = $("#modal-plot");
   
   var posterURL;
   // If this works, replicate for each genre-row
@@ -37,7 +43,7 @@ $(document).ready(function() {
           newCol.attr("class", "col-3");
           var newCard = $("<div></div>");
           newCard.attr("class", "card");
-          newCard.attr("id", genreMovies[i].title + "-img");
+          newCard.attr("id", genreMovies[i].title + "&y=" + genreMovies[i].year);
           var newPoster = $("<img>");
           newPoster.attr("class", "card-img-top");
           newPoster.attr("alt", genreMovies[i].title);
@@ -49,7 +55,6 @@ $(document).ready(function() {
           newCardBody.append(newCardText);
           newCard.append(newPoster, newCardBody);
           newCol.append(newCard);
-          console.log("Testing newCol: ", newCol);
           actionRow.append(newCol);
         });
       }
@@ -73,7 +78,7 @@ $(document).ready(function() {
           newCol.attr("class", "col-3");
           var newCard = $("<div></div>");
           newCard.attr("class", "card");
-          newCard.attr("id", genreMovies[i].title + "-img");
+          newCard.attr("id", genreMovies[i].title + "&y=" + genreMovies[i].year);
           var newPoster = $("<img>");
           newPoster.attr("class", "card-img-top");
           newPoster.attr("alt", genreMovies[i].title);
@@ -85,7 +90,6 @@ $(document).ready(function() {
           newCardBody.append(newCardText);
           newCard.append(newPoster, newCardBody);
           newCol.append(newCard);
-          console.log("Testing newCol: ", newCol);
           comedyRow.append(newCol);
         });
       }
@@ -109,7 +113,7 @@ $(document).ready(function() {
           newCol.attr("class", "col-3");
           var newCard = $("<div></div>");
           newCard.attr("class", "card");
-          newCard.attr("id", genreMovies[i].title + "-img");
+          newCard.attr("id", genreMovies[i].title + "&y=" + genreMovies[i].year);
           var newPoster = $("<img>");
           newPoster.attr("class", "card-img-top");
           newPoster.attr("alt", genreMovies[i].title);
@@ -121,7 +125,6 @@ $(document).ready(function() {
           newCardBody.append(newCardText);
           newCard.append(newPoster, newCardBody);
           newCol.append(newCard);
-          console.log("Testing newCol: ", newCol);
           dramaRow.append(newCol);
         });
       }
@@ -145,7 +148,7 @@ $(document).ready(function() {
           newCol.attr("class", "col-3");
           var newCard = $("<div></div>");
           newCard.attr("class", "card");
-          newCard.attr("id", genreMovies[i].title + "-img");
+          newCard.attr("id", genreMovies[i].title + "&y=" + genreMovies[i].year);
           var newPoster = $("<img>");
           newPoster.attr("class", "card-img-top");
           newPoster.attr("alt", genreMovies[i].title);
@@ -157,7 +160,6 @@ $(document).ready(function() {
           newCardBody.append(newCardText);
           newCard.append(newPoster, newCardBody);
           newCol.append(newCard);
-          console.log("Testing newCol: ", newCol);
           musicalRow.append(newCol);
         });
       }
@@ -181,7 +183,7 @@ $(document).ready(function() {
           newCol.attr("class", "col-3");
           var newCard = $("<div></div>");
           newCard.attr("class", "card");
-          newCard.attr("id", genreMovies[i].title + "-img");
+          newCard.attr("id", genreMovies[i].title + "&y=" + genreMovies[i].year);
           var newPoster = $("<img>");
           newPoster.attr("class", "card-img-top");
           newPoster.attr("alt", genreMovies[i].title);
@@ -193,10 +195,27 @@ $(document).ready(function() {
           newCardBody.append(newCardText);
           newCard.append(newPoster, newCardBody);
           newCol.append(newCard);
-          console.log("Testing newCol: ", newCol);
           animatedRow.append(newCol);
         });
       }
     });
   }
+
+  $(document).on("click", ".card", function () {
+    var chosenMovie = $(this).attr("id");
+    console.log(chosenMovie);
+    var modalURL = "http://www.omdbapi.com/?t=" + chosenMovie + "&apikey=7144e1fa";
+    $.ajax({
+      url: modalURL,
+      method: "GET"
+    }).then(function(modalOMDB) {
+      console.log(modalOMDB);
+      modalTitle.text(modalOMDB.Title);
+      modalPoster.attr("src", modalOMDB.Poster);
+      modalInfo.text("Year of Release: " + modalOMDB.Year + "; Runtime: " + modalOMDB.Runtime + "; Director: " + modalOMDB.Director);
+      modalPlot.text(modalOMDB.Plot);
+      $("#chosen-movie-modal").modal('toggle');
+    });
+    
+  });
 });
