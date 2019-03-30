@@ -34,10 +34,15 @@ $(document).ready(function() {
           $("#well-section").append("<h3>Format: " + movieArray[i].format + "</h3>");
           $("#well-section").append("<img src='" + posterURL + "'>");
         });
-        }
+      }
     });
   }
 
+  // ============================
+  // SET UP CLICK EVENT
+  // ============================
+  
+  // When user clicks on search button, run the movieSearch function
   $("#db-search-btn").on("click", function() {
     event.preventDefault();
     movieSearch(filmTitle.val());
