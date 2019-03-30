@@ -13,5 +13,4 @@ CREATE TABLE films (
   PRIMARY KEY (id)
 );
 
-
 SELECT * FROM films;
