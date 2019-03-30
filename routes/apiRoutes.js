@@ -25,12 +25,10 @@ module.exports = function(app) {
   });
 
   // GET route to retrieve specific movies from db based on user search
-  app.get("/api/:movie", function(req, res) {
+  app.get("/api/:movieid", function(req, res) {
     db.Film.findAll({
       where: {
-        title: {
-          $like: "%" + req.params.movie + "%"
-        }
+        id: req.params.movieid
       }
     }).then(function(movieResult) {
       res.json(movieResult);
@@ -44,7 +42,8 @@ module.exports = function(app) {
       year: req.body.year,
       genre: req.body.genre,
       price: req.body.price,
-      format: req.body.format
+      format: req.body.format,
+      isReserved: req.body.isReserved
     }).then(function(newMovie) {
       res.json(newMovie);
     });
@@ -69,7 +68,8 @@ module.exports = function(app) {
         year: req.body.year,
         genre: req.body.genre,
         price: req.body.price,
-        format: req.body.format
+        format: req.body.format,
+        isReserved: req.body.isReserved
       },
       {
         where: {
