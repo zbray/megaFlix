@@ -238,11 +238,12 @@ $(document).ready(function() {
   // Need to figure out how to set up and use the update route
   $(document).on("click", ".reserve-btn", function () {
     var reservedMovie = $(this).attr("movieID");
-    console.log(reservedMovie);
+    // console.log(reservedMovie);
     $.ajax({
       method: "PUT",
       url: "/api/movies/",
       data: {
+        frontendid: reservedMovie,
         isReserved: 1
       }
     }).then(function(response) {

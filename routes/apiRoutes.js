@@ -62,6 +62,7 @@ module.exports = function(app) {
 
   // PUT route for manager to update a movie in db by movie id
   app.put("/api/movies/", function(req, res) {
+    console.log(req.body);
     db.Film.update(
       req.body,
       // {
@@ -69,7 +70,7 @@ module.exports = function(app) {
       // },
       {
         where: {
-          id: req.body.movieID
+          id: req.body.frontendid
         }
       }
     ).then(function(updatedMovie) {
