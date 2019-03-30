@@ -11,6 +11,7 @@ $(document).ready(function() {
   var modalPoster = $("#modal-image");
   var modalInfo = $("#modal-info");
   var modalPlot = $("#modal-plot");
+  var modalReserved = $("#modal-reserved");
   
   var posterURL;
   // If this works, replicate for each genre-row
@@ -43,7 +44,7 @@ $(document).ready(function() {
           newCol.attr("class", "col-3");
           var newCard = $("<div></div>");
           newCard.attr("class", "card");
-          newCard.attr("id", genreMovies[i].title + "&y=" + genreMovies[i].year);
+          newCard.attr("movie-id", genreMovies[i].id);
           var newPoster = $("<img>");
           newPoster.attr("class", "card-img-top");
           newPoster.attr("alt", genreMovies[i].title);
@@ -78,7 +79,7 @@ $(document).ready(function() {
           newCol.attr("class", "col-3");
           var newCard = $("<div></div>");
           newCard.attr("class", "card");
-          newCard.attr("id", genreMovies[i].title + "&y=" + genreMovies[i].year);
+          newCard.attr("movie-id", genreMovies[i].id);
           var newPoster = $("<img>");
           newPoster.attr("class", "card-img-top");
           newPoster.attr("alt", genreMovies[i].title);
@@ -113,7 +114,7 @@ $(document).ready(function() {
           newCol.attr("class", "col-3");
           var newCard = $("<div></div>");
           newCard.attr("class", "card");
-          newCard.attr("id", genreMovies[i].title + "&y=" + genreMovies[i].year);
+          newCard.attr("movie-id", genreMovies[i].id);
           var newPoster = $("<img>");
           newPoster.attr("class", "card-img-top");
           newPoster.attr("alt", genreMovies[i].title);
@@ -148,7 +149,7 @@ $(document).ready(function() {
           newCol.attr("class", "col-3");
           var newCard = $("<div></div>");
           newCard.attr("class", "card");
-          newCard.attr("id", genreMovies[i].title + "&y=" + genreMovies[i].year);
+          newCard.attr("movie-id", genreMovies[i].id);
           var newPoster = $("<img>");
           newPoster.attr("class", "card-img-top");
           newPoster.attr("alt", genreMovies[i].title);
@@ -202,20 +203,53 @@ $(document).ready(function() {
   }
 
   $(document).on("click", ".card", function () {
-    var chosenMovie = $(this).attr("id");
-    console.log(chosenMovie);
-    var modalURL = "http://www.omdbapi.com/?t=" + chosenMovie + "&apikey=7144e1fa";
-    $.ajax({
-      url: modalURL,
-      method: "GET"
-    }).then(function(modalOMDB) {
-      console.log(modalOMDB);
-      modalTitle.text(modalOMDB.Title);
-      modalPoster.attr("src", modalOMDB.Poster);
-      modalInfo.text("Year of Release: " + modalOMDB.Year + "; Runtime: " + modalOMDB.Runtime + "; Director: " + modalOMDB.Director);
-      modalPlot.text(modalOMDB.Plot);
-      $("#chosen-movie-modal").modal('toggle');
+    var chosenMovie = $(this).attr("movie-id");
+    $.get("/api/" + chosenMovie, function(movieData) {
+      return movieData;
+    }).then(function(response) {
+      var movieInfo = response;
+      var modalURL = "http://www.omdbapi.com/?t=" + movieInfo[0].title + "&y=" + movieInfo[0].year + "&apikey=7144e1fa";
+      $.ajax({
+        url: modalURL,
+        method: "GET"
+      }).then(function(modalOMDB) {
+        modalTitle.text(movieInfo[0].title);
+        modalPoster.attr("src", modalOMDB.Poster);
+        modalInfo.text("Year of Release: " + modalOMDB.Year + "; Runtime: " + modalOMDB.Runtime + "; Director: " + modalOMDB.Director);
+        modalPlot.text(modalOMDB.Plot);
+        if (movieInfo[0].isReserved) {
+          modalReserved.empty();
+          var reservedText = $("<p>Oh no! This movie is currently unavailable. Please check again later</p>");
+          modalReserved.html(reservedText);
+        } else {
+          modalReserved.empty();
+          var reserveButton = $("<button></button>");
+          reserveButton.attr("class", "btn btn-success reserve-btn");
+          reserveButton.attr("movieID", movieInfo[0].id);
+          reserveButton.text("Reserve Film");
+          modalReserved.html(reserveButton);
+        }
+        $("#chosen-movie-modal").modal('toggle');
+      });
     });
-    
+  });
+
+  // Need to figure out how to set up and use the update route
+  $(document).on("click", ".reserve-btn", function () {
+    var reservedMovie = $(this).attr("movieID");
+    // console.log(reservedMovie);
+    $.ajax({
+      method: "PUT",
+      url: "/api/movies/",
+      data: {
+        frontendid: reservedMovie,
+        isReserved: 1
+      }
+    }).then(function(response) {
+      console.log("Testing response: ", response);
+      modalReserved.empty();
+      var reservedConfirmation = $("<p>Your reservation has been processed! Please pick up your movie in the next 3 days.</p>");
+      modalReserved.html(reservedConfirmation);
+    });
   });
 });

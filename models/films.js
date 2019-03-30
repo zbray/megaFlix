@@ -5,7 +5,8 @@ module.exports = function(sequelize, DataTypes) {
       year: DataTypes.STRING,
       genre: DataTypes.STRING,
       price: DataTypes.STRING,
-      format: DataTypes.STRING
+      format: DataTypes.STRING,
+      isReserved: DataTypes.BOOLEAN
     },
     {
       timestamps: false
