@@ -223,9 +223,15 @@ $(document).ready(function() {
         modalPoster.attr("src", modalOMDB.Poster);
         modalInfo.text("Year of Release: " + modalOMDB.Year + "; Runtime: " + modalOMDB.Runtime + "; Director: " + modalOMDB.Director);
         modalPlot.text(modalOMDB.Plot);
-        // Insert reserved bool status below VVV
-        
-        modalReserved.text(movieInfo[0].isReserved);
+        if (movieInfo[0].isReserved) {
+          modalReserved.empty();
+          var reservedText = $("<p>Oh no! This movie is currently unavailable. Please check again later</p>");
+          modalReserved.html(reservedText);
+        } else {
+          modalReserved.empty();
+          var reserveButton = $("<button id='reserve-button'>Reserve Film</button>");
+          modalReserved.html(reserveButton);
+        }
         $("#chosen-movie-modal").modal('toggle');
       });
     });
