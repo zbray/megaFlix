@@ -9,6 +9,7 @@ CREATE TABLE films (
   genre VARCHAR (255) NOT NULL,
   price INTEGER NOT NULL,
   format VARCHAR (50) NULL,
+  isReserved BOOLEAN NOT NULL DEFAULT 0,
   PRIMARY KEY (id)
 );
 
