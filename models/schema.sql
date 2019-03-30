@@ -10,8 +10,8 @@ CREATE TABLE films (
   price INTEGER NOT NULL,
   format VARCHAR (50) NULL,
   isReserved BOOLEAN NOT NULL DEFAULT 0,
+
   PRIMARY KEY (id)
 );
-
 
 SELECT * FROM films;
