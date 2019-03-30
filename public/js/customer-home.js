@@ -45,7 +45,6 @@ $(document).ready(function() {
           var newCard = $("<div></div>");
           newCard.attr("class", "card");
           newCard.attr("movie-id", genreMovies[i].id);
-          // newCard.attr("id", genreMovies[i].title + "&y=" + genreMovies[i].year);
           var newPoster = $("<img>");
           newPoster.attr("class", "card-img-top");
           newPoster.attr("alt", genreMovies[i].title);
@@ -80,7 +79,7 @@ $(document).ready(function() {
           newCol.attr("class", "col-3");
           var newCard = $("<div></div>");
           newCard.attr("class", "card");
-          newCard.attr("id", genreMovies[i].title + "&y=" + genreMovies[i].year);
+          newCard.attr("movie-id", genreMovies[i].id);
           var newPoster = $("<img>");
           newPoster.attr("class", "card-img-top");
           newPoster.attr("alt", genreMovies[i].title);
@@ -115,7 +114,7 @@ $(document).ready(function() {
           newCol.attr("class", "col-3");
           var newCard = $("<div></div>");
           newCard.attr("class", "card");
-          newCard.attr("id", genreMovies[i].title + "&y=" + genreMovies[i].year);
+          newCard.attr("movie-id", genreMovies[i].id);
           var newPoster = $("<img>");
           newPoster.attr("class", "card-img-top");
           newPoster.attr("alt", genreMovies[i].title);
@@ -150,7 +149,7 @@ $(document).ready(function() {
           newCol.attr("class", "col-3");
           var newCard = $("<div></div>");
           newCard.attr("class", "card");
-          newCard.attr("id", genreMovies[i].title + "&y=" + genreMovies[i].year);
+          newCard.attr("movie-id", genreMovies[i].id);
           var newPoster = $("<img>");
           newPoster.attr("class", "card-img-top");
           newPoster.attr("alt", genreMovies[i].title);
@@ -248,7 +247,9 @@ $(document).ready(function() {
       }
     }).then(function(response) {
       console.log("Testing response: ", response);
-      // return response;
+      modalReserved.empty();
+      var reservedConfirmation = $("<p>Your reservation has been processed! Please pick up your movie in the next 3 days.</p>");
+      modalReserved.html(reservedConfirmation);
     });
   });
 });
