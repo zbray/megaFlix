@@ -8,7 +8,7 @@ $(document).ready(function() {
   // DEFINE FUNCTIONS
   // ============================
 
-  // Function to dynamically generate 4 action movies from db and OMDB
+  // Function to search db for movie based on user input
   function searchResults(filmTitle) {
     $.get("/api/" + filmTitle, function(data) {
       if (!data[0]) {
