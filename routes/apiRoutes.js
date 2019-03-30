@@ -63,17 +63,13 @@ module.exports = function(app) {
   // PUT route for manager to update a movie in db by movie id
   app.put("/api/movies/", function(req, res) {
     db.Film.update(
-      {
-        title: req.body.title,
-        year: req.body.year,
-        genre: req.body.genre,
-        price: req.body.price,
-        format: req.body.format,
-        isReserved: req.body.isReserved
-      },
+      req.body,
+      // {
+      //   isReserved: req.body.isReserved
+      // },
       {
         where: {
-          id: req.body.id
+          id: req.body.movieID
         }
       }
     ).then(function(updatedMovie) {

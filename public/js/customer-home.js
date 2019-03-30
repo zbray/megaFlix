@@ -205,20 +205,15 @@ $(document).ready(function() {
 
   $(document).on("click", ".card", function () {
     var chosenMovie = $(this).attr("movie-id");
-    console.log("|208|Testing modal id grab: ", chosenMovie);
     $.get("/api/" + chosenMovie, function(movieData) {
-      console.log("|210|Testing api call: ", movieData);
       return movieData;
     }).then(function(response) {
       var movieInfo = response;
-      console.log("|214|Testing data transfer: ", movieInfo);
       var modalURL = "http://www.omdbapi.com/?t=" + movieInfo[0].title + "&y=" + movieInfo[0].year + "&apikey=7144e1fa";
-      console.log("|216|Testing api url: ", modalURL);
       $.ajax({
         url: modalURL,
         method: "GET"
       }).then(function(modalOMDB) {
-        console.log(modalOMDB);
         modalTitle.text(movieInfo[0].title);
         modalPoster.attr("src", modalOMDB.Poster);
         modalInfo.text("Year of Release: " + modalOMDB.Year + "; Runtime: " + modalOMDB.Runtime + "; Director: " + modalOMDB.Director);
@@ -229,11 +224,30 @@ $(document).ready(function() {
           modalReserved.html(reservedText);
         } else {
           modalReserved.empty();
-          var reserveButton = $("<button id='reserve-button'>Reserve Film</button>");
+          var reserveButton = $("<button></button>");
+          reserveButton.attr("class", "btn btn-success reserve-btn");
+          reserveButton.attr("movieID", movieInfo[0].id);
+          reserveButton.text("Reserve Film");
           modalReserved.html(reserveButton);
         }
         $("#chosen-movie-modal").modal('toggle');
       });
+    });
+  });
+
+  // Need to figure out how to set up and use the update route
+  $(document).on("click", ".reserve-btn", function () {
+    var reservedMovie = $(this).attr("movieID");
+    console.log(reservedMovie);
+    $.ajax({
+      method: "PUT",
+      url: "/api/movies/",
+      data: {
+        isReserved: 1
+      }
+    }).then(function(response) {
+      console.log("Testing response: ", response);
+      // return response;
     });
   });
 });
