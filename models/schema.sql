@@ -9,8 +9,8 @@ CREATE TABLE films (
   genre VARCHAR (255) NOT NULL,
   price INTEGER NOT NULL,
   format VARCHAR (50) NULL,
+  reserved BOOLEAN,
   PRIMARY KEY (id)
 );
-
 
 SELECT * FROM films;
