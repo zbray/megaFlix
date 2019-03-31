@@ -1,19 +1,25 @@
 // var db = require("../models");
 var path = require("path");
-
+var isAuthenticated = require("../config/middleware/isAuthenticated");
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/login.html"));
+    if (req.user) {
+      res.redirect("/customer-home");
+    }
+    res.sendFile(path.join(__dirname, "../public/signup.html"));
   });
 
-  // Test route to ensure search functionality is working
-  app.get("/search-test", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/login.html"));
+  app.get("/login", function(req, res) {
+    // If the user already has an account send them to the members page
+    if (req.user) {
+      res.redirect("/customer-home");
+    }
+    res.sendFile(path.join(__dirname, "../public/index.html"));
   });
 
   // Route for when customer logs in
-  app.get("/customer-home", function(req, res) {
+  app.get("/customer-home", isAuthenticated, function(req, res) {
     res.sendFile(path.join(__dirname, "../public/customer-home.html"));
   });
 
