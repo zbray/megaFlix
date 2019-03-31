@@ -10,6 +10,8 @@ $(document).ready(function() {
   var modalTitle = $(".modal-title");
   var modalPoster = $("#modal-image");
   var modalInfo = $("#modal-info");
+  var modalRuntime = $("#modal-runtime");
+  var modalDirector = $("#modal-director");
   var modalPlot = $("#modal-plot");
   var modalReserved = $("#modal-reserved");
   
@@ -215,7 +217,10 @@ $(document).ready(function() {
       }).then(function(modalOMDB) {
         modalTitle.text(movieInfo[0].title);
         modalPoster.attr("src", modalOMDB.Poster);
-        modalInfo.text("Year of Release: " + modalOMDB.Year + "; Runtime: " + modalOMDB.Runtime + "; Director: " + modalOMDB.Director);
+        modalInfo.text("Year of Release: " + modalOMDB.Year);
+        modalRuntime.text("Runtime: " + modalOMDB.Runtime);
+        console.log("FIND IT "+ JSON.stringify(modalOMDB));
+        modalDirector.text("Director: " + modalOMDB.Director);
         modalPlot.text(modalOMDB.Plot);
         if (movieInfo[0].isReserved) {
           modalReserved.empty();

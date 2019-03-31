@@ -3,7 +3,7 @@
 ## Purpose
 Mega Flix is a film database built for independent video stores to increase production, increase revenue, and attract new customers. This version of the application is for demo purposes and can be modified at many levels based on what the store in particular prefers.
 
-### Usage
+## Usage
 The user will be presented with a login page
 
 ![Alt text]((public/images/readme-login-large.png "Login"))
@@ -17,7 +17,7 @@ The user can then click on a movie and be presented with information about the f
 
 The user can also search for a film by title which will return all films that include the search term.
 
-### Manager Account
+## Manager Account
 
 If the user is the store manager they have access to the administrator account of the database/storefront.
 
