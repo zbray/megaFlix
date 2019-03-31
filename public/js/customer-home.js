@@ -5,15 +5,19 @@ $(document).ready(function() {
   var dramaRow = $(".drama-row");
   var musicalRow = $(".musical-row");
   var animatedRow = $(".animated-row");
+  var movieContainer = $(".movie-container");
+  var resultsRow = $(".results-row");
 
   // References to various elements of modal
   var modalTitle = $(".modal-title");
   var modalPoster = $("#modal-image");
   var modalInfo = $("#modal-info");
+  var modalRuntime = $("#modal-runtime");
+  var modalDirector = $("#modal-director");
   var modalPlot = $("#modal-plot");
+  var modalReserved = $("#modal-reserved");
   
   var posterURL;
-  // If this works, replicate for each genre-row
 
   // Call function to dynamically render movies on customer homepage
   actionPull(); 
@@ -43,7 +47,7 @@ $(document).ready(function() {
           newCol.attr("class", "col-3");
           var newCard = $("<div></div>");
           newCard.attr("class", "card");
-          newCard.attr("id", genreMovies[i].title + "&y=" + genreMovies[i].year);
+          newCard.attr("movie-id", genreMovies[i].id);
           var newPoster = $("<img>");
           newPoster.attr("class", "card-img-top");
           newPoster.attr("alt", genreMovies[i].title);
@@ -78,7 +82,7 @@ $(document).ready(function() {
           newCol.attr("class", "col-3");
           var newCard = $("<div></div>");
           newCard.attr("class", "card");
-          newCard.attr("id", genreMovies[i].title + "&y=" + genreMovies[i].year);
+          newCard.attr("movie-id", genreMovies[i].id);
           var newPoster = $("<img>");
           newPoster.attr("class", "card-img-top");
           newPoster.attr("alt", genreMovies[i].title);
@@ -113,7 +117,7 @@ $(document).ready(function() {
           newCol.attr("class", "col-3");
           var newCard = $("<div></div>");
           newCard.attr("class", "card");
-          newCard.attr("id", genreMovies[i].title + "&y=" + genreMovies[i].year);
+          newCard.attr("movie-id", genreMovies[i].id);
           var newPoster = $("<img>");
           newPoster.attr("class", "card-img-top");
           newPoster.attr("alt", genreMovies[i].title);
@@ -148,7 +152,7 @@ $(document).ready(function() {
           newCol.attr("class", "col-3");
           var newCard = $("<div></div>");
           newCard.attr("class", "card");
-          newCard.attr("id", genreMovies[i].title + "&y=" + genreMovies[i].year);
+          newCard.attr("movie-id", genreMovies[i].id);
           var newPoster = $("<img>");
           newPoster.attr("class", "card-img-top");
           newPoster.attr("alt", genreMovies[i].title);
@@ -199,23 +203,127 @@ $(document).ready(function() {
         });
       }
     });
-  }
+  };
 
-  $(document).on("click", ".card", function () {
-    var chosenMovie = $(this).attr("id");
-    console.log(chosenMovie);
-    var modalURL = "http://www.omdbapi.com/?t=" + chosenMovie + "&apikey=7144e1fa";
-    $.ajax({
-      url: modalURL,
-      method: "GET"
-    }).then(function(modalOMDB) {
-      console.log(modalOMDB);
-      modalTitle.text(modalOMDB.Title);
-      modalPoster.attr("src", modalOMDB.Poster);
-      modalInfo.text("Year of Release: " + modalOMDB.Year + "; Runtime: " + modalOMDB.Runtime + "; Director: " + modalOMDB.Director);
-      modalPlot.text(modalOMDB.Plot);
-      $("#chosen-movie-modal").modal('toggle');
+  // Function to search db for movie based on user input
+  function searchResults(filmTitle) {
+    $.get("/api/title/" + filmTitle, function(data) {
+      if (!data[0]) {
+      // If there is no match in db, no data found
+      console.log("No data found!");
+      } else {
+      // If there are any matches in db, proceed with search functionality
+      // We need to return api to use it in the .then method
+      return data;
+      }
+    }).then(function(response) {
+      var movieArray = response;
+      movieContainer.empty();
+      var newHeadingRow = $("<div></div>");
+      newHeadingRow.attr("class", "row");
+      var newRow = $("<div></div>");
+      newRow.attr("class", "row results-row");
+      var searchHeading = $("<h3></h3>").text("Search Results");
+      newHeadingRow.append(searchHeading);
+      movieContainer.append(newHeadingRow);
+      movieContainer.append(newRow);
+      for (let i = 0; i < movieArray.length; i++) {
+        var queryURL = "http://www.omdbapi.com/?t=" + movieArray[i].title + "&y=" + movieArray[i].year + "&apikey=7144e1fa";
+        $.ajax({
+          url: queryURL,
+          method: "GET"
+        }).then(function(OMDBresponse) {
+          posterURL = OMDBresponse.Poster;
+          var newCol = $("<div></div>");
+          newCol.attr("class", "col-3 mt-5");
+          var newCard = $("<div></div>");
+          newCard.attr("class", "card");
+          newCard.attr("movie-id", movieArray[i].id);
+          var newPoster = $("<img>");
+          newPoster.attr("class", "card-img-top");
+          newPoster.attr("alt", movieArray[i].title);
+          newPoster.attr("src", posterURL);
+          var newCardBody = $("<div></div>");
+          newCardBody.attr("class", "card-body");
+          var newCardText = $("<p></p>").text(movieArray[i].title);
+          newCardText.attr("class", "card-text text-center")
+          newCardBody.append(newCardText);
+          newCard.append(newPoster, newCardBody);
+          newCol.append(newCard);
+          newRow.append(newCol);
+        });
+      };
     });
-    
+  };
+
+
+  // ============================
+  //    SET UP EVENT LISTENERS
+  // ============================
+
+  // When user submits search form, run the searchResults function
+  $("form").submit(function(event) {
+    event.preventDefault();
+    resultsRow.empty();
+    var searchTerm = $(".movie-search-bar").val().trim();
+    console.log("Testing search term: ", searchTerm);
+    searchResults(searchTerm); 
+  });
+
+  // When user clicks on a card, toggle modal functionality
+  $(document).on("click", ".card", function () {
+    var chosenMovie = $(this).attr("movie-id");
+    console.log("Movie ID: ", chosenMovie);
+    $.get("/api/id/" + chosenMovie, function(movieData) {
+      return movieData;
+    }).then(function(response) {
+      var movieInfo = response;
+      console.log("Testing movieInfo: ", movieInfo);
+      var modalURL = "http://www.omdbapi.com/?t=" + movieInfo[0].title + "&y=" + movieInfo[0].year + "&apikey=7144e1fa";
+      $.ajax({
+        url: modalURL,
+        method: "GET"
+      }).then(function(modalOMDB) {
+        modalTitle.text(movieInfo[0].title);
+        modalPoster.attr("src", modalOMDB.Poster);
+        modalInfo.text("Year of Release: " + modalOMDB.Year);
+        modalRuntime.text("Runtime: " + modalOMDB.Runtime);
+        console.log("FIND IT "+ JSON.stringify(modalOMDB));
+        modalDirector.text("Director: " + modalOMDB.Director);
+        modalPlot.text(modalOMDB.Plot);
+        if (movieInfo[0].isReserved) {
+          modalReserved.empty();
+          var reservedText = $("<p>Oh no! This movie is currently unavailable. Please check again later</p>");
+          modalReserved.html(reservedText);
+        } else {
+          modalReserved.empty();
+          var reserveButton = $("<button></button>");
+          reserveButton.attr("class", "btn btn-success reserve-btn");
+          reserveButton.attr("movieID", movieInfo[0].id);
+          reserveButton.text("Reserve Film");
+          modalReserved.html(reserveButton);
+        }
+        $("#chosen-movie-modal").modal('toggle');
+      });
+    });
+  });
+
+  // Need to figure out how to set up and use the update route
+  $(document).on("click", ".reserve-btn", function () {
+    var reservedMovie = $(this).attr("movieID");
+    // console.log(reservedMovie);
+    $.ajax({
+      method: "PUT",
+      url: "/api/movies/",
+      data: {
+        frontendid: reservedMovie,
+        isReserved: 1
+      }
+    }).then(function(response) {
+      console.log("Testing response: ", response);
+      modalReserved.empty();
+      var reservedConfirmation = $("<p>Your reservation has been processed! Please pick up your movie in the next 3 days.</p>");
+      modalReserved.html(reservedConfirmation);
+    });
   });
 });
