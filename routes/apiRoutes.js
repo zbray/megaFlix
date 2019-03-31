@@ -1,9 +1,34 @@
 // Require database models to configure API routes.
 var db = require("../models");
+var passport = require("../config/passport");
 
-// ==============================
-//       BUILDING ROUTES
-// ==============================
+module.exports = function(app) {
+  app.post("/api/login", passport.authenticate("local"), function(req, res) {
+    res.redirect("/customer-home");
+  });
+
+  app.post("/api/signup", function(req, res) {
+    console.log(req.body);
+    db.User.create({
+      email: req.body.email,
+      password: req.body.password
+    })
+      .then(function() {
+        res.redirect(307, "/api/login");
+      })
+      .catch(function(err) {
+        console.log(err);
+        res.json(err);
+      });
+  });
+
+  // GET route to retrieve all movies from db. This will be used on
+  // user homepage and manager page
+  app.get("/api/movies", function(req, res) {
+    db.Film.findAll({}).then(function(allMovies) {
+      res.json(allMovies);
+    });
+  });
 
 module.exports = function(app) {
   // GET route to retrieve all movies of a specific genre from db for user homepage

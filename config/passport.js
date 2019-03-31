@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 var passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
 
