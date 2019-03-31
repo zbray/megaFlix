@@ -9,7 +9,7 @@ module.exports = function(app) {
 
   // Test route to ensure search functionality is working
   app.get("/search-test", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/login.html"));
+    res.sendFile(path.join(__dirname, "../public/search-results.html"));
   });
 
   // Route for when customer logs in
