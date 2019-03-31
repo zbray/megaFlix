@@ -205,7 +205,7 @@ $(document).ready(function() {
 
   // Function to search db for movie based on user input
   function searchResults(filmTitle) {
-    $.get("/api/" + filmTitle, function(data) {
+    $.get("/api/title/" + filmTitle, function(data) {
       if (!data[0]) {
       // If there is no match in db, no data found
       console.log("No data found!");
@@ -236,7 +236,7 @@ $(document).ready(function() {
           newCol.attr("class", "col-3 mt-5");
           var newCard = $("<div></div>");
           newCard.attr("class", "card");
-          newCard.attr("id", movieArray[i].title + "&y=" + movieArray[i].year);
+          newCard.attr("movie-id", movieArray[i].id);
           var newPoster = $("<img>");
           newPoster.attr("class", "card-img-top");
           newPoster.attr("alt", movieArray[i].title);
@@ -271,10 +271,12 @@ $(document).ready(function() {
   // When user clicks on a card, toggle modal functionality
   $(document).on("click", ".card", function () {
     var chosenMovie = $(this).attr("movie-id");
-    $.get("/api/" + chosenMovie, function(movieData) {
+    console.log("Movie ID: ", chosenMovie);
+    $.get("/api/id/" + chosenMovie, function(movieData) {
       return movieData;
     }).then(function(response) {
       var movieInfo = response;
+      console.log("Testing movieInfo: ", movieInfo);
       var modalURL = "http://www.omdbapi.com/?t=" + movieInfo[0].title + "&y=" + movieInfo[0].year + "&apikey=7144e1fa";
       $.ajax({
         url: modalURL,

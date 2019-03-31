@@ -20,8 +20,21 @@ module.exports = function(app) {
     });
   });
 
+  // GET route to retrieve specific movies from db based on user search
+  app.get("/api/title/:movie", function(req, res) {
+    db.Film.findAll({
+      where: {
+        title: {
+          $like: "%" + req.params.movie + "%"
+        }
+      }
+    }).then(function(movieResult) {
+      res.json(movieResult);
+    });
+  });
+  
   // GET route to retrieve specific movies from db based on user search.
-  app.get("/api/:movieid", function(req, res) {
+  app.get("/api/id/:movieid", function(req, res) {
     db.Film.findAll({
       where: {
         id: req.params.movieid
