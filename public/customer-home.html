@@ -32,7 +32,7 @@
           <strong><i class="fas fa-film"></i> MegaFlix</strong>
         </a>
         <form class="form-inline">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search for movies..." aria-label="Search">
+          <input class="form-control mr-sm-2 movie-search-bar" type="search" placeholder="Search for movies..." aria-label="Search">
           <button class="btn btn-warning my-2 my-sm-0" type="submit">Search</button>
         </form>
       </div>
@@ -51,7 +51,7 @@
       </div>
     </section>
 
-    <div class="container">
+    <div class="container movie-container">
       <div class="row">
         <div class="col 12">
           <h3 class="float-left">Action</h3>
@@ -99,17 +99,31 @@
 
 
   <div class="modal fade" id="chosen-movie-modal" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title"></h4>
         </div>
         <div class="modal-body">
-          <img id="modal-image">
-          <p id="modal-info"></p>
-          <p id="modal-plot"></p>
-          <div id="modal-reserved"></div>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6">
+                <img id="modal-image">
+              </div>
+              <div class="col-md-6">
+                  <p id="modal-info"></p>
+                  <p id="modal-runtime"></p>
+                  <p id="modal-director"></p>
+                  <p id="modal-plot"></p><br>
+                  <div id="modal-reserved"></div>
+              </div>
+
+
+            </div>
+
+          </div>
+
           <!-- <button id="reserve-button">Reserve Film</button> -->
         </div>
         <div class="modal-footer">

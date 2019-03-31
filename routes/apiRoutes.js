@@ -1,11 +1,35 @@
 // Require database models to configure API routes.
 var db = require("../models");
-
-// ==============================
-//       BUILDING ROUTES
-// ==============================
+var passport = require("../config/passport");
 
 module.exports = function(app) {
+  app.post("/api/login", passport.authenticate("local"), function(req, res) {
+    res.redirect("/customer-home");
+  });
+
+  app.post("/api/signup", function(req, res) {
+    console.log(req.body);
+    db.User.create({
+      email: req.body.email,
+      password: req.body.password
+    })
+      .then(function() {
+        res.redirect(307, "/api/login");
+      })
+      .catch(function(err) {
+        console.log(err);
+        res.json(err);
+      });
+  });
+
+  // GET route to retrieve all movies from db. This will be used on
+  // user homepage and manager page
+  app.get("/api/movies", function(req, res) {
+    db.Film.findAll({}).then(function(allMovies) {
+      res.json(allMovies);
+    });
+  });
+
   // GET route to retrieve all movies of a specific genre from db for user homepage
   // and 'See All' page for each genre (e.g. See All Action movies).
   app.get("/api/movies/:genre", function(req, res) {
@@ -20,8 +44,21 @@ module.exports = function(app) {
     });
   });
 
+  // GET route to retrieve specific movies from db based on user search
+  app.get("/api/title/:movie", function(req, res) {
+    db.Film.findAll({
+      where: {
+        title: {
+          $like: "%" + req.params.movie + "%"
+        }
+      }
+    }).then(function(movieResult) {
+      res.json(movieResult);
+    });
+  });
+  
   // GET route to retrieve specific movies from db based on user search.
-  app.get("/api/:movieid", function(req, res) {
+  app.get("/api/id/:movieid", function(req, res) {
     db.Film.findAll({
       where: {
         id: req.params.movieid
