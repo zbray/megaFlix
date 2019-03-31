@@ -32,11 +32,12 @@ $(document).ready(function() {
 
   // Function to dynamically generate 4 action movies from db and OMDB
   function actionPull() {
+    console.log("THE TEST");
     $.get("/api/movies/action", function(genreData) {
+      console.log("TEST");
       return genreData;
     }).then(function(response) {
       var genreMovies = response;
-      console.log("Testing whether all is right with the world");
       for (let i = 0; i < 4; i++) {
         var queryURL = "http://www.omdbapi.com/?t=" + genreMovies[i].title + "&y=" + genreMovies[i].year + "&apikey=7144e1fa";
         $.ajax({

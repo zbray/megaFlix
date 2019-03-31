@@ -30,7 +30,6 @@ module.exports = function(app) {
     });
   });
 
-module.exports = function(app) {
   // GET route to retrieve all movies of a specific genre from db for user homepage
   // and 'See All' page for each genre (e.g. See All Action movies).
   app.get("/api/movies/:genre", function(req, res) {
@@ -119,4 +118,4 @@ module.exports = function(app) {
       res.json(updatedMovie);
     });
   });
-}};
+};
