@@ -36,6 +36,7 @@ $(document).ready(function() {
       return genreData;
     }).then(function(response) {
       var genreMovies = response;
+      console.log("Testing whether all is right with the world");
       for (let i = 0; i < 4; i++) {
         var queryURL = "http://www.omdbapi.com/?t=" + genreMovies[i].title + "&y=" + genreMovies[i].year + "&apikey=7144e1fa";
         $.ajax({
