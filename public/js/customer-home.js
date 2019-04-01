@@ -32,9 +32,7 @@ $(document).ready(function() {
 
   // All-in-one movie loading for customer-homepage
   function moviePull(genre) {
-    console.log("Testing all-in-one function");
     var movieGenre = genre.toString();
-
     $.get("/api/movies/" + movieGenre, function(genreData) {
       return genreData;
     }).then(function(response) {
@@ -62,7 +60,6 @@ $(document).ready(function() {
           newCardBody.append(newCardText);
           newCard.append(newPoster, newCardBody);
           newCol.append(newCard);
-          console.log("Does movieGenre carry?", movieGenre);
           if (movieGenre === "action") {
             actionRow.append(newCol);
           } else if (movieGenre === "comedy") {
@@ -83,49 +80,73 @@ $(document).ready(function() {
   function searchResults(filmTitle) {
     $.get("/api/title/" + filmTitle, function(data) {
       if (!data[0]) {
-      // If there is no match in db, no data found
-      console.log("No data found!");
+        // If there is no match in db, no data found
+        console.log("No data found!");
+        movieContainer.empty();
+        var newErrorRow = $("<div></div>");
+        newErrorRow.attr("class", "row");
+        var newRow = $("<div></div>");
+        newRow.attr("class", "row error-row");
+        var searchHeading = $("<h3></h3>").text("We're sorry! That movie isn't in our inventory yet.");
+        newErrorRow.append(searchHeading);
+        movieContainer.append(newErrorRow);
+        movieContainer.append(newRow);
+        return data;
       } else {
       // If there are any matches in db, proceed with search functionality
       // We need to return api to use it in the .then method
-      return data;
+        return data;
       }
     }).then(function(response) {
       var movieArray = response;
-      movieContainer.empty();
-      var newHeadingRow = $("<div></div>");
-      newHeadingRow.attr("class", "row");
-      var newRow = $("<div></div>");
-      newRow.attr("class", "row results-row");
-      var searchHeading = $("<h3></h3>").text("Search Results");
-      newHeadingRow.append(searchHeading);
-      movieContainer.append(newHeadingRow);
-      movieContainer.append(newRow);
-      for (let i = 0; i < movieArray.length; i++) {
-        var queryURL = "http://www.omdbapi.com/?t=" + movieArray[i].title + "&y=" + movieArray[i].year + "&apikey=7144e1fa";
-        $.ajax({
-          url: queryURL,
-          method: "GET"
-        }).then(function(OMDBresponse) {
-          posterURL = OMDBresponse.Poster;
-          var newCol = $("<div></div>");
-          newCol.attr("class", "col-3 mt-5");
-          var newCard = $("<div></div>");
-          newCard.attr("class", "card");
-          newCard.attr("movie-id", movieArray[i].id);
-          var newPoster = $("<img>");
-          newPoster.attr("class", "card-img-top");
-          newPoster.attr("alt", movieArray[i].title);
-          newPoster.attr("src", posterURL);
-          var newCardBody = $("<div></div>");
-          newCardBody.attr("class", "card-body");
-          var newCardText = $("<p></p>").text(movieArray[i].title);
-          newCardText.attr("class", "card-text text-center")
-          newCardBody.append(newCardText);
-          newCard.append(newPoster, newCardBody);
-          newCol.append(newCard);
-          newRow.append(newCol);
-        });
+      if (!movieArray[0]) {
+        // If there is no match in db, no data found
+        movieContainer.empty();
+        var newErrorRow = $("<div></div>");
+        newErrorRow.attr("class", "row");
+        var newRow = $("<div></div>");
+        newRow.attr("class", "row error-row");
+        var searchHeading = $("<h3></h3>").text("We're sorry! That movie isn't in our inventory yet. Please try another movie.");
+        newErrorRow.append(searchHeading);
+        movieContainer.append(newErrorRow);
+        movieContainer.append(newRow);
+      } else {
+        console.log("Testing response: ", movieArray);
+        movieContainer.empty();
+        var newHeadingRow = $("<div></div>");
+        newHeadingRow.attr("class", "row");
+        var newRow = $("<div></div>");
+        newRow.attr("class", "row results-row");
+        var searchHeading = $("<h3></h3>").text("Search Results");
+        newHeadingRow.append(searchHeading);
+        movieContainer.append(newHeadingRow);
+        movieContainer.append(newRow);
+        for (let i = 0; i < movieArray.length; i++) {
+          var queryURL = "http://www.omdbapi.com/?t=" + movieArray[i].title + "&y=" + movieArray[i].year + "&apikey=7144e1fa";
+          $.ajax({
+            url: queryURL,
+            method: "GET"
+          }).then(function(OMDBresponse) {
+            posterURL = OMDBresponse.Poster;
+            var newCol = $("<div></div>");
+            newCol.attr("class", "col-3 mt-4 mb-4");
+            var newCard = $("<div></div>");
+            newCard.attr("class", "card");
+            newCard.attr("movie-id", movieArray[i].id);
+            var newPoster = $("<img>");
+            newPoster.attr("class", "card-img-top");
+            newPoster.attr("alt", movieArray[i].title);
+            newPoster.attr("src", posterURL);
+            var newCardBody = $("<div></div>");
+            newCardBody.attr("class", "card-body");
+            var newCardText = $("<p></p>").text(movieArray[i].title);
+            newCardText.attr("class", "card-text text-center")
+            newCardBody.append(newCardText);
+            newCard.append(newPoster, newCardBody);
+            newCol.append(newCard);
+            newRow.append(newCol);
+          });
+        };
       };
     });
   };
