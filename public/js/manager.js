@@ -2,12 +2,10 @@ $(document).ready(function() {
   // Activate tooltips
   // $("[data-toggle="tooltip"]").tooltip();
 
-  var dbTable = $("#db-table"); 
-  // Function to add rows to table
-  // function addRow() {
-  //   var movieID 
-  // };
+  var dbTable = $("#db-table");
+  var addMovieForm = $("#add-movie-form");
   
+  // Call dbPull function to populate manager table from db
   dbPull();
 
   // Function to pull movies from db
@@ -22,9 +20,11 @@ $(document).ready(function() {
         var movieTitle = dbMovies[k].title;
         var movieYear = dbMovies[k].year;
         var movieGenre = dbMovies[k].genre;
-        var moviePrice = Math.trunc(dbMovies[k].price);
+        var moviePrice = dbMovies[k].price;
         var movieFormat = dbMovies[k].format;
         var movieReserved = dbMovies[k].isReserved;
+        
+        // Create checkbox columns in table depending on isReserved status from db
         if (movieReserved) {
           var reserved = "<td><span class='custom-checkbox'><input type='checkbox' id='reserved' name='options[]' value='1' checked><label for='reserved'></label></span></td>";
           var checkIn = "<td><span class='custom-checkbox'><input type='checkbox' id='checkIn' name='options[]' value='1'><label for='checkIn'></label></span></td>";
@@ -72,6 +72,39 @@ $(document).ready(function() {
       }
     });
   });
+
+  // Add Movie Modal functionality
+  // When user clicks "Add" button, new movie details are posted to db
+  $("#add-movie-form").on("submit", function(event) {
+    event.preventDefault();
+    var newTitle = $(".new-title").val().trim();
+    var newYear = $(".new-year").val().trim();
+    var newGenre = $(".new-genre").val().trim();
+    var newPrice = $(".new-price").val().trim();
+    var newFormat = $(".new-format").val().trim();
+    $.ajax({
+      method: "POST",
+      url: "/api/movies/",
+      data: {
+        formTitle: newTitle,
+        formYear: newYear,
+        formGenre: newGenre,
+        formPrice: newPrice,
+        formFormat: newFormat,
+        formReserved: false
+      }
+    }).then(function(response) {
+      console.log("Testing response: ", response);
+      $(".new-title").empty();
+      $(".new-year").empty();
+      $(".new-genre").empty();
+      $(".new-price").empty();
+      $(".new-format").empty();
+      
+    });
+  });
+
+
   // // Select/Deselect checkboxes
   // var checkbox = $('table tbody input[type="checkbox"]');
   // $("#selectAll").click(function () {
