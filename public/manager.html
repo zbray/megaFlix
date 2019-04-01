@@ -51,150 +51,13 @@
                     <th>Genre</th>
                     <th>Price</th>
                     <th>Format</th>
-                    <th>Checked In</th>
+                    <th>Reserved</th>
                     <th>Checked Out</th>
+                    <th>Returned</th>
                     <th>Action</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>1001</td>
-                    <td>Ghost Dad</td>
-                    <td>1990</td>
-                    <td>Comedy</td>
-                    <td>2.99</td>
-                    <td>VHS</td>
-                    <td>
-                        <span class="custom-checkbox">
-                            <input type="checkbox" id="checkIn" name="options[]" value="1">
-                            <label for="checkIn"></label>
-                        </span>
-                    </td>
-                    <td>
-                        <span class="custom-checkbox">
-                            <input type="checkbox" id="checkOut" name="options[]" value="1">
-                            <label for="checkOut"></label>
-                        </span>
-                    </td>
-                    <td>
-                        <a href="#editMovieModal" class="edit" data-toggle="modal"><i class="material-icons"
-                                data-toggle="tooltip" title="edit">&#xE254;</i></a>
-                        <a href="#deleteMovieModal" class="delete" data-toggle="modal"><i class="material-icons"
-                                data-toggle="tooltip" title="delete">&#xE872;</i></a>
-                    </td>
-                </tr>
-            </tbody>
-            <tbody>
-                <tr>
-                    <td>1001</td>
-                    <td>Ghost Dad</td>
-                    <td>1990</td>
-                    <td>Comedy</td>
-                    <td>2.99</td>
-                    <td>VHS</td>
-                    <td>
-                        <span class="custom-checkbox">
-                            <input type="checkbox" id="checkIn" name="options[]" value="1">
-                            <label for="checkIn"></label>
-                        </span>
-                    </td>
-                    <td>
-                        <span class="custom-checkbox">
-                            <input type="checkbox" id="checkOut" name="options[]" value="1">
-                            <label for="checkOut"></label>
-                        </span>
-                    </td>
-                    <td>
-                        <a href="#editMovieModal" class="edit" data-toggle="modal"><i class="material-icons"
-                                data-toggle="tooltip" title="edit">&#xE254;</i></a>
-                        <a href="#deleteMovieModal" class="delete" data-toggle="modal"><i class="material-icons"
-                                data-toggle="tooltip" title="delete">&#xE872;</i></a>
-                    </td>
-                </tr>
-            </tbody>
-            <tbody>
-                <tr>
-                    <td>1001</td>
-                    <td>Ghost Dad</td>
-                    <td>1990</td>
-                    <td>Comedy</td>
-                    <td>2.99</td>
-                    <td>VHS</td>
-                    <td>
-                        <span class="custom-checkbox">
-                            <input type="checkbox" id="checkIn" name="options[]" value="1">
-                            <label for="checkIn"></label>
-                        </span>
-                    </td>
-                    <td>
-                        <span class="custom-checkbox">
-                            <input type="checkbox" id="checkOut" name="options[]" value="1">
-                            <label for="checkOut"></label>
-                        </span>
-                    </td>
-                    <td>
-                        <a href="#editMovieModal" class="edit" data-toggle="modal"><i class="material-icons"
-                                data-toggle="tooltip" title="edit">&#xE254;</i></a>
-                        <a href="#deleteMovieModal" class="delete" data-toggle="modal"><i class="material-icons"
-                                data-toggle="tooltip" title="delete">&#xE872;</i></a>
-                    </td>
-                </tr>
-            </tbody>
-            <tbody>
-                <tr>
-                    <td>1001</td>
-                    <td>Ghost Dad</td>
-                    <td>1990</td>
-                    <td>Comedy</td>
-                    <td>2.99</td>
-                    <td>VHS</td>
-                    <td>
-                        <span class="custom-checkbox">
-                            <input type="checkbox" id="checkIn" name="options[]" value="1">
-                            <label for="checkIn"></label>
-                        </span>
-                    </td>
-                    <td>
-                        <span class="custom-checkbox">
-                            <input type="checkbox" id="checkOut" name="options[]" value="1">
-                            <label for="checkOut"></label>
-                        </span>
-                    </td>
-                    <td>
-                        <a href="#editMovieModal" class="edit" data-toggle="modal"><i class="material-icons"
-                                data-toggle="tooltip" title="edit">&#xE254;</i></a>
-                        <a href="#deleteMovieModal" class="delete" data-toggle="modal"><i class="material-icons"
-                                data-toggle="tooltip" title="delete">&#xE872;</i></a>
-                    </td>
-                </tr>
-            </tbody>
-            <tbody>
-                <tr>
-                    <td>1002</td>
-                    <td>Airplane</td>
-                    <td>1985</td>
-                    <td>Comedy</td>
-                    <td>2.99</td>
-                    <td>VHS</td>
-                    <td>
-                        <span class="custom-checkbox">
-                            <input type="checkbox" id="checkIn" name="options[]" value="1">
-                            <label for="checkIn"></label>
-                        </span>
-                    </td>
-                    <td>
-                        <span class="custom-checkbox">
-                            <input type="checkbox" id="checkOut" name="options[]" value="1">
-                            <label for="checkOut"></label>
-                        </span>
-                    </td>
-                    <td>
-                        <a href="#editMovieModal" class="edit" data-toggle="modal"><i class="material-icons"
-                                data-toggle="tooltip" title="edit">&#xE254;</i></a>
-                        <a href="#deleteMovieModal" class="delete" data-toggle="modal"><i class="material-icons"
-                                data-toggle="tooltip" title="delete">&#xE872;</i></a>
-                    </td>
-                </tr>
+            <tbody id="db-table">
             </tbody>
         </table>
         <!-- <div class="clearfix">
@@ -215,35 +78,31 @@
     <div id="addMovieModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form>
+                <form id="add-movie-form">
                     <div class="modal-header">
                         <h4 class="modal-title">Add Movie</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label>ID</label>
-                            <input type="text" class="form-control" required>
-                        </div>
-                        <div class="form-group">
                             <label>Title</label>
-                            <input type="text" class="form-control" required>
+                            <input type="text" class="form-control new-title" required>
                         </div>
                         <div class="form-group">
                             <label>Year</label>
-                            <input type="text" class="form-control" required>
+                            <input type="text" class="form-control new-year" required>
                         </div>
                         <div class="form-group">
                             <label>Genre</label>
-                            <input type="text" class="form-control" required>
+                            <input type="text" class="form-control new-genre" required>
                         </div>
                         <div class="form-group">
                             <label>Price</label>
-                            <input type="text" class="form-control" required>
+                            <input type="text" class="form-control new-price" required>
                         </div>
                         <div class="form-group">
                             <label>Format</label>
-                            <input type="text" class="form-control" required>
+                            <input type="text" class="form-control new-format" required>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -258,35 +117,31 @@
     <div id="editMovieModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form>
+                <form id="edit-movie-form">
                     <div class="modal-header">
                         <h4 class="modal-title">Edit Movie</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label>ID</label>
-                            <input type="text" class="form-control" required>
-                        </div>
-                        <div class="form-group">
                             <label>Title</label>
-                            <input type="text" class="form-control" required>
+                            <input type="text" class="form-control edit-title" required>
                         </div>
                         <div class="form-group">
                             <label>Year</label>
-                            <input type="text" class="form-control" required>
+                            <input type="text" class="form-control edit-year" required>
                         </div>
                         <div class="form-group">
                             <label>Genre</label>
-                            <input type="text" class="form-control" required>
+                            <input type="text" class="form-control edit-genre" required>
                         </div>
                         <div class="form-group">
                             <label>Price</label>
-                            <input type="text" class="form-control" required>
+                            <input type="text" class="form-control edit-price" required>
                         </div>
                         <div class="form-group">
                             <label>Format</label>
-                            <input type="text" class="form-control" required>
+                            <input type="text" class="form-control edit-format" required>
                         </div>
                     </div>
                     <div class="modal-footer">

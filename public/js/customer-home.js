@@ -17,6 +17,7 @@ $(document).ready(function() {
   var modalPlot = $("#modal-plot");
   var modalReserved = $("#modal-reserved");
   
+  // Defining this variable globally for use across app
   var posterURL;
 
   // Call functions to dynamically render movies on customer homepage
