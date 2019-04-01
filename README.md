@@ -6,7 +6,7 @@ Mega Flix is a film database built for independent video stores to increase prod
 ## Usage
 The user will be presented with a login page
 
-![Alt text]((public/images/readme-login-large.png "Login"))
+![Alt text](public/images/readme-login-large.png "Login"))
 
 
 After logging in the user will be presented with a home screen with a selection of genres and 4 movies from each of the selected genres. 
