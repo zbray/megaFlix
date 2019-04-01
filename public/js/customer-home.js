@@ -19,245 +19,166 @@ $(document).ready(function() {
   
   var posterURL;
 
-  // Call function to dynamically render movies on customer homepage
-  actionPull(); 
-  comedyPull();
-  dramaPull();
-  musicalPull();
-  animatedPull();
+  // Call functions to dynamically render movies on customer homepage
+  moviePull("action");
+  moviePull("comedy");
+  moviePull("drama");
+  moviePull("musical");
+  moviePull("animation");
 
   // ============================
   // DEFINE FUNCTIONS
   // ============================
 
-  // Function to dynamically generate 4 action movies from db and OMDB
-  function actionPull() {
-    console.log("THE TEST");
-    $.get("/api/movies/action", function(genreData) {
-      console.log("TEST");
+  // All-in-one movie loading for customer-homepage
+  function moviePull(genre) {
+    var movieGenre = genre.toString();
+    $.get("/api/movies/" + movieGenre, function(genreData) {
       return genreData;
     }).then(function(response) {
-      var genreMovies = response;
+      var displayMovies = response;
       for (let i = 0; i < 4; i++) {
-        var queryURL = "http://www.omdbapi.com/?t=" + genreMovies[i].title + "&y=" + genreMovies[i].year + "&apikey=7144e1fa";
+        var queryURL = "https://www.omdbapi.com/?t=" + displayMovies[i].title + "&y=" + displayMovies[i].year + "&apikey=7144e1fa";
         $.ajax({
           url: queryURL,
           method: "GET"
         }).then(function(OMDBresponse) {
           posterURL = OMDBresponse.Poster;
           var newCol = $("<div></div>");
-          newCol.attr("class", "col-3");
+          newCol.attr("class", "col-3 mt-2");
           var newCard = $("<div></div>");
           newCard.attr("class", "card");
-          newCard.attr("movie-id", genreMovies[i].id);
+          newCard.attr("movie-id", displayMovies[i].id);
           var newPoster = $("<img>");
           newPoster.attr("class", "card-img-top");
-          newPoster.attr("alt", genreMovies[i].title);
+          newPoster.attr("alt", displayMovies[i].title);
           newPoster.attr("src", posterURL);
           var newCardBody = $("<div></div>");
           newCardBody.attr("class", "card-body");
-          var newCardText = $("<p></p>").text(genreMovies[i].title);
+          var newCardText = $("<p></p>").text(displayMovies[i].title);
           newCardText.attr("class", "card-text text-center")
           newCardBody.append(newCardText);
           newCard.append(newPoster, newCardBody);
           newCol.append(newCard);
-          actionRow.append(newCol);
+          if (movieGenre === "action") {
+            actionRow.append(newCol);
+          } else if (movieGenre === "comedy") {
+            comedyRow.append(newCol);
+          } else if (movieGenre === "drama") {
+            dramaRow.append(newCol);
+          } else if (movieGenre === "musical") {
+            musicalRow.append(newCol);
+          } else if (movieGenre === "animation") {
+            animatedRow.append(newCol);
+          };
         });
       }
     });
   }
-
-  // Function to dynamically generate 4 comedy movies from db and OMDB
-  function comedyPull() {
-    $.get("/api/movies/comedy", function(genreData) {
-      return genreData;
-    }).then(function(response) {
-      var genreMovies = response;
-      for (let i = 0; i < 4; i++) {
-        var queryURL = "http://www.omdbapi.com/?t=" + genreMovies[i].title + "&y=" + genreMovies[i].year + "&apikey=7144e1fa";
-        $.ajax({
-          url: queryURL,
-          method: "GET"
-        }).then(function(OMDBresponse) {
-          posterURL = OMDBresponse.Poster;
-          var newCol = $("<div></div>");
-          newCol.attr("class", "col-3");
-          var newCard = $("<div></div>");
-          newCard.attr("class", "card");
-          newCard.attr("movie-id", genreMovies[i].id);
-          var newPoster = $("<img>");
-          newPoster.attr("class", "card-img-top");
-          newPoster.attr("alt", genreMovies[i].title);
-          newPoster.attr("src", posterURL);
-          var newCardBody = $("<div></div>");
-          newCardBody.attr("class", "card-body");
-          var newCardText = $("<p></p>").text(genreMovies[i].title);
-          newCardText.attr("class", "card-text text-center")
-          newCardBody.append(newCardText);
-          newCard.append(newPoster, newCardBody);
-          newCol.append(newCard);
-          comedyRow.append(newCol);
-        });
-      }
-    });
-  }
-
-  // Function to dynamically generate 4 drama movies from db and OMDB
-  function dramaPull() {
-    $.get("/api/movies/drama", function(genreData) {
-      return genreData;
-    }).then(function(response) {
-      var genreMovies = response;
-      for (let i = 0; i < 4; i++) {
-        var queryURL = "http://www.omdbapi.com/?t=" + genreMovies[i].title + "&y=" + genreMovies[i].year + "&apikey=7144e1fa";
-        $.ajax({
-          url: queryURL,
-          method: "GET"
-        }).then(function(OMDBresponse) {
-          posterURL = OMDBresponse.Poster;
-          var newCol = $("<div></div>");
-          newCol.attr("class", "col-3");
-          var newCard = $("<div></div>");
-          newCard.attr("class", "card");
-          newCard.attr("movie-id", genreMovies[i].id);
-          var newPoster = $("<img>");
-          newPoster.attr("class", "card-img-top");
-          newPoster.attr("alt", genreMovies[i].title);
-          newPoster.attr("src", posterURL);
-          var newCardBody = $("<div></div>");
-          newCardBody.attr("class", "card-body");
-          var newCardText = $("<p></p>").text(genreMovies[i].title);
-          newCardText.attr("class", "card-text text-center")
-          newCardBody.append(newCardText);
-          newCard.append(newPoster, newCardBody);
-          newCol.append(newCard);
-          dramaRow.append(newCol);
-        });
-      }
-    });
-  }
-
-  // Function to dynamically generate 4 musicals from db and OMDB
-  function musicalPull() {
-    $.get("/api/movies/musical", function(genreData) {
-      return genreData;
-    }).then(function(response) {
-      var genreMovies = response;
-      for (let i = 0; i < 4; i++) {
-        var queryURL = "http://www.omdbapi.com/?t=" + genreMovies[i].title + "&y=" + genreMovies[i].year + "&apikey=7144e1fa";
-        $.ajax({
-          url: queryURL,
-          method: "GET"
-        }).then(function(OMDBresponse) {
-          posterURL = OMDBresponse.Poster;
-          var newCol = $("<div></div>");
-          newCol.attr("class", "col-3");
-          var newCard = $("<div></div>");
-          newCard.attr("class", "card");
-          newCard.attr("movie-id", genreMovies[i].id);
-          var newPoster = $("<img>");
-          newPoster.attr("class", "card-img-top");
-          newPoster.attr("alt", genreMovies[i].title);
-          newPoster.attr("src", posterURL);
-          var newCardBody = $("<div></div>");
-          newCardBody.attr("class", "card-body");
-          var newCardText = $("<p></p>").text(genreMovies[i].title);
-          newCardText.attr("class", "card-text text-center")
-          newCardBody.append(newCardText);
-          newCard.append(newPoster, newCardBody);
-          newCol.append(newCard);
-          musicalRow.append(newCol);
-        });
-      }
-    });
-  }
-
-  // Function to dynamically generate 4 musicals from db and OMDB
-  function animatedPull() {
-    $.get("/api/movies/animation", function(genreData) {
-      return genreData;
-    }).then(function(response) {
-      var genreMovies = response;
-      for (let i = 0; i < 4; i++) {
-        var queryURL = "http://www.omdbapi.com/?t=" + genreMovies[i].title + "&y=" + genreMovies[i].year + "&apikey=7144e1fa";
-        $.ajax({
-          url: queryURL,
-          method: "GET"
-        }).then(function(OMDBresponse) {
-          posterURL = OMDBresponse.Poster;
-          var newCol = $("<div></div>");
-          newCol.attr("class", "col-3");
-          var newCard = $("<div></div>");
-          newCard.attr("class", "card");
-          newCard.attr("id", genreMovies[i].title + "&y=" + genreMovies[i].year);
-          var newPoster = $("<img>");
-          newPoster.attr("class", "card-img-top");
-          newPoster.attr("alt", genreMovies[i].title);
-          newPoster.attr("src", posterURL);
-          var newCardBody = $("<div></div>");
-          newCardBody.attr("class", "card-body");
-          var newCardText = $("<p></p>").text(genreMovies[i].title);
-          newCardText.attr("class", "card-text text-center")
-          newCardBody.append(newCardText);
-          newCard.append(newPoster, newCardBody);
-          newCol.append(newCard);
-          animatedRow.append(newCol);
-        });
-      }
-    });
-  };
 
   // Function to search db for movie based on user input
   function searchResults(filmTitle) {
     $.get("/api/title/" + filmTitle, function(data) {
-      if (!data[0]) {
-      // If there is no match in db, no data found
-      console.log("No data found!");
-      } else {
-      // If there are any matches in db, proceed with search functionality
-      // We need to return api to use it in the .then method
-      return data;
-      }
+      return data
     }).then(function(response) {
       var movieArray = response;
-      movieContainer.empty();
-      var newHeadingRow = $("<div></div>");
-      newHeadingRow.attr("class", "row");
-      var newRow = $("<div></div>");
-      newRow.attr("class", "row results-row");
-      var searchHeading = $("<h3></h3>").text("Search Results");
-      newHeadingRow.append(searchHeading);
-      movieContainer.append(newHeadingRow);
-      movieContainer.append(newRow);
-      for (let i = 0; i < movieArray.length; i++) {
-        var queryURL = "http://www.omdbapi.com/?t=" + movieArray[i].title + "&y=" + movieArray[i].year + "&apikey=7144e1fa";
+      if (!movieArray[0]) {
+        // If there is no match in db, no data found
+        movieContainer.empty();
+        var newErrorRow = $("<div></div>");
+        newErrorRow.attr("class", "row");
+        var newRow = $("<div></div>");
+        newRow.attr("class", "row error-row");
+        var searchHeading = $("<h3></h3>").text("We're sorry! That movie isn't in our inventory yet. Please try another movie.");
+        newErrorRow.append(searchHeading);
+        movieContainer.append(newErrorRow);
+        movieContainer.append(newRow);
+      } else {
+        console.log("Testing response: ", movieArray);
+        movieContainer.empty();
+        var newHeadingRow = $("<div></div>");
+        newHeadingRow.attr("class", "row");
+        var newRow = $("<div></div>");
+        newRow.attr("class", "row results-row");
+        var searchHeading = $("<h3></h3>").text("Search Results");
+        newHeadingRow.append(searchHeading);
+        movieContainer.append(newHeadingRow);
+        movieContainer.append(newRow);
+        for (let i = 0; i < movieArray.length; i++) {
+          var queryURL = "https://www.omdbapi.com/?t=" + movieArray[i].title + "&y=" + movieArray[i].year + "&apikey=7144e1fa";
+          $.ajax({
+            url: queryURL,
+            method: "GET"
+          }).then(function(OMDBresponse) {
+            posterURL = OMDBresponse.Poster;
+            var newCol = $("<div></div>");
+            newCol.attr("class", "col-3 mt-4 mb-4");
+            var newCard = $("<div></div>");
+            newCard.attr("class", "card");
+            newCard.attr("movie-id", movieArray[i].id);
+            var newPoster = $("<img>");
+            newPoster.attr("class", "card-img-top");
+            newPoster.attr("alt", movieArray[i].title);
+            newPoster.attr("src", posterURL);
+            var newCardBody = $("<div></div>");
+            newCardBody.attr("class", "card-body");
+            var newCardText = $("<p></p>").text(movieArray[i].title);
+            newCardText.attr("class", "card-text text-center")
+            newCardBody.append(newCardText);
+            newCard.append(newPoster, newCardBody);
+            newCol.append(newCard);
+            newRow.append(newCol);
+          });
+        };
+      };
+    });
+  };
+
+  // Function to search db for movies based on genre
+  function allGenre(genre) {
+    var genreSearch = genre.toString();
+    movieContainer.empty();
+    var newHeadingRow = $("<div></div>");
+    newHeadingRow.attr("class", "row");
+    var genreRow = $("<div></div>");
+    genreRow.attr("class", "row results-row");
+    var searchHeading = $("<h3></h3>").text("All " + genreSearch + " Movies");
+    newHeadingRow.append(searchHeading);
+    movieContainer.append(newHeadingRow);
+    movieContainer.append(genreRow);
+    $.get("/api/movies/" + genreSearch, function(genreData) {
+      return genreData;
+    }).then(function(response) {
+      var genreMovies = response;
+      console.log("genreMovies", genreMovies);
+      for (let j = 0; j < genreMovies.length; j++) {
+        var queryURL = "https://www.omdbapi.com/?t=" + genreMovies[j].title + "&y=" + genreMovies[j].year + "&apikey=7144e1fa";
         $.ajax({
           url: queryURL,
           method: "GET"
         }).then(function(OMDBresponse) {
           posterURL = OMDBresponse.Poster;
           var newCol = $("<div></div>");
-          newCol.attr("class", "col-3 mt-5");
+          newCol.attr("class", "col-3 mt-4 mb-4");
           var newCard = $("<div></div>");
           newCard.attr("class", "card");
-          newCard.attr("movie-id", movieArray[i].id);
+          newCard.attr("movie-id", genreMovies[j].id);
           var newPoster = $("<img>");
           newPoster.attr("class", "card-img-top");
-          newPoster.attr("alt", movieArray[i].title);
+          newPoster.attr("alt", genreMovies[j].title);
           newPoster.attr("src", posterURL);
           var newCardBody = $("<div></div>");
           newCardBody.attr("class", "card-body");
-          var newCardText = $("<p></p>").text(movieArray[i].title);
+          var newCardText = $("<p></p>").text(genreMovies[j].title);
           newCardText.attr("class", "card-text text-center")
           newCardBody.append(newCardText);
           newCard.append(newPoster, newCardBody);
           newCol.append(newCard);
-          newRow.append(newCol);
+          genreRow.append(newCol);
         });
       };
     });
   };
-
 
   // ============================
   //    SET UP EVENT LISTENERS
@@ -281,7 +202,7 @@ $(document).ready(function() {
     }).then(function(response) {
       var movieInfo = response;
       console.log("Testing movieInfo: ", movieInfo);
-      var modalURL = "http://www.omdbapi.com/?t=" + movieInfo[0].title + "&y=" + movieInfo[0].year + "&apikey=7144e1fa";
+      var modalURL = "https://www.omdbapi.com/?t=" + movieInfo[0].title + "&y=" + movieInfo[0].year + "&apikey=7144e1fa";
       $.ajax({
         url: modalURL,
         method: "GET"
@@ -310,7 +231,7 @@ $(document).ready(function() {
     });
   });
 
-  // Need to figure out how to set up and use the update route
+  // When user clicks reserve button, db is updated
   $(document).on("click", ".reserve-btn", function () {
     var reservedMovie = $(this).attr("movieID");
     // console.log(reservedMovie);
@@ -328,4 +249,25 @@ $(document).ready(function() {
       modalReserved.html(reservedConfirmation);
     });
   });
+
+  $(document).on("click", ".action-link", function () {
+    allGenre("Action");
+  });
+
+  $(document).on("click", ".comedy-link", function () {
+    allGenre("Comedy");
+  });
+  
+  $(document).on("click", ".drama-link", function () {
+    allGenre("Drama");
+  });
+
+  $(document).on("click", ".musical-link", function () {
+    allGenre("Musical");
+  });
+
+  $(document).on("click", ".animated-link", function () {
+    allGenre("Animated");
+  });
+
 });
