@@ -3,10 +3,12 @@ var db = require("../models");
 var passport = require("../config/passport");
 
 module.exports = function(app) {
+  // POST route to send user login credentials to DB for authentication
   app.post("/api/login", passport.authenticate("local"), function(req, res) {
     res.redirect("/customer-home");
   });
 
+  // POST route to send new user signup credentials to DB for future authentication.
   app.post("/api/signup", function(req, res) {
     console.log(req.body);
     db.User.create({
@@ -79,12 +81,12 @@ module.exports = function(app) {
   // POST route for manager to add new movie to db.
   app.post("/api/movies", function(req, res) {
     db.Film.create({
-      title: req.body.title,
-      year: req.body.year,
-      genre: req.body.genre,
-      price: req.body.price,
-      format: req.body.format,
-      isReserved: req.body.isReserved
+      title: req.body.formTitle,
+      year: req.body.formYear,
+      genre: req.body.formGenre,
+      price: req.body.formPrice,
+      format: req.body.formFormat,
+      isReserved: req.body.formReserved
     }).then(function(newMovie) {
       res.json(newMovie);
     });
@@ -106,9 +108,7 @@ module.exports = function(app) {
     console.log(req.body);
     db.Film.update(
       req.body,
-      // {
-      //   isReserved: req.body.isReserved
-      // },
+
       {
         where: {
           id: req.body.frontendid
