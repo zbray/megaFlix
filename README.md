@@ -6,14 +6,15 @@ Mega Flix is a film database built for independent video stores to increase prod
 ## Usage
 The user will be presented with a login page
 
-![Alt text](public/images/readme-login-large.png "Login"))
+![Login](public/images/readme-login-large.png "Login")
 
+After logging in the user will be presented with a home screen with a selection of genres and 4 movies from each of the selected genres.
 
-After logging in the user will be presented with a home screen with a selection of genres and 4 movies from each of the selected genres. 
-
-![Alt text]((public/images/readme-user-large.png "User"))
+![Customer Home](public/images/readme-custhome.png?raw=true "Customer Home")
 
 The user can then click on a movie and be presented with information about the film (year of release, director, plot, runtime) the modal will also tell the user if the film is available to be reserved or if it has already been reserved or checked out.
+
+![Modal](public/images/readme-modal.png?raw=true "Modal")
 
 The user can also search for a film by title which will return all films that include the search term.
 
@@ -26,12 +27,12 @@ The user can see a list of all films that have been reserved and change the bool
 The manager can also add a film to the database as these films are released on physical media throughout the year. The manager can also edit a film's information and delete a film from the inventory entirely.
 
 #### Languages and Technologies
-HTML, CSS, Bootstrap, JavaScript, jQuery, MySQL, Node.js, Express.js, Express-handlebars, Passport.io, Sequelize.
+HTML, CSS, Bootstrap, JavaScript, jQuery, MySQL, Node.js, Express.js, Express-handlebars, Passport.io, Sequelize, OMdB API, ESLint
 
 #### Built Using
 Visual Studio Code, MySQLWorkbench, Terminal, Trello.
 
 #### Deployment
-Deployed on Heroku (here)[https://megaflix.herokuapp.com/]
+Deployed on Heroku [here](https://megaflix.herokuapp.com/).
 
 Built by Ryan Gartner, Shehan Peiris, Chad Dunnam and Zach Bray - Nerds at Northwestern
