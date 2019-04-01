@@ -79,24 +79,7 @@ $(document).ready(function() {
   // Function to search db for movie based on user input
   function searchResults(filmTitle) {
     $.get("/api/title/" + filmTitle, function(data) {
-      if (!data[0]) {
-        // If there is no match in db, no data found
-        console.log("No data found!");
-        movieContainer.empty();
-        var newErrorRow = $("<div></div>");
-        newErrorRow.attr("class", "row");
-        var newRow = $("<div></div>");
-        newRow.attr("class", "row error-row");
-        var searchHeading = $("<h3></h3>").text("We're sorry! That movie isn't in our inventory yet.");
-        newErrorRow.append(searchHeading);
-        movieContainer.append(newErrorRow);
-        movieContainer.append(newRow);
-        return data;
-      } else {
-      // If there are any matches in db, proceed with search functionality
-      // We need to return api to use it in the .then method
-        return data;
-      }
+      return data
     }).then(function(response) {
       var movieArray = response;
       if (!movieArray[0]) {
