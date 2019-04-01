@@ -38,7 +38,7 @@ $(document).ready(function() {
     }).then(function(response) {
       var displayMovies = response;
       for (let i = 0; i < 4; i++) {
-        var queryURL = "http://www.omdbapi.com/?t=" + displayMovies[i].title + "&y=" + displayMovies[i].year + "&apikey=7144e1fa";
+        var queryURL = "https://www.omdbapi.com/?t=" + displayMovies[i].title + "&y=" + displayMovies[i].year + "&apikey=7144e1fa";
         $.ajax({
           url: queryURL,
           method: "GET"
@@ -122,7 +122,7 @@ $(document).ready(function() {
         movieContainer.append(newHeadingRow);
         movieContainer.append(newRow);
         for (let i = 0; i < movieArray.length; i++) {
-          var queryURL = "http://www.omdbapi.com/?t=" + movieArray[i].title + "&y=" + movieArray[i].year + "&apikey=7144e1fa";
+          var queryURL = "https://www.omdbapi.com/?t=" + movieArray[i].title + "&y=" + movieArray[i].year + "&apikey=7144e1fa";
           $.ajax({
             url: queryURL,
             method: "GET"
@@ -169,7 +169,7 @@ $(document).ready(function() {
       var genreMovies = response;
       console.log("genreMovies", genreMovies);
       for (let j = 0; j < genreMovies.length; j++) {
-        var queryURL = "http://www.omdbapi.com/?t=" + genreMovies[j].title + "&y=" + genreMovies[j].year + "&apikey=7144e1fa";
+        var queryURL = "https://www.omdbapi.com/?t=" + genreMovies[j].title + "&y=" + genreMovies[j].year + "&apikey=7144e1fa";
         $.ajax({
           url: queryURL,
           method: "GET"
@@ -219,7 +219,7 @@ $(document).ready(function() {
     }).then(function(response) {
       var movieInfo = response;
       console.log("Testing movieInfo: ", movieInfo);
-      var modalURL = "http://www.omdbapi.com/?t=" + movieInfo[0].title + "&y=" + movieInfo[0].year + "&apikey=7144e1fa";
+      var modalURL = "https://www.omdbapi.com/?t=" + movieInfo[0].title + "&y=" + movieInfo[0].year + "&apikey=7144e1fa";
       $.ajax({
         url: modalURL,
         method: "GET"
