@@ -32,6 +32,6 @@ HTML, CSS, Bootstrap, JavaScript, jQuery, MySQL, Node.js, Express.js, Express-ha
 Visual Studio Code, MySQLWorkbench, Terminal, Trello.
 
 #### Deployment
-Deployed on Heroku (here)[https://megaflix.herokuapp.com/]
+Deployed on Heroku (here)[https://rhubarb-cobbler-89467.herokuapp.com/]
 
 Built by Ryan Gartner, Shehan Peiris, Chad Dunnam and Zach Bray - Nerds at Northwestern
