@@ -33,6 +33,7 @@ HTML, CSS, Bootstrap, JavaScript, jQuery, MySQL, Node.js, Express.js, Express-ha
 Visual Studio Code, MySQLWorkbench, Terminal, Trello.
 
 #### Deployment
+
 Deployed on Heroku [here](https://rhubarb-cobbler-89467.herokuapp.com/).
 
 Class presentation can be viewed [here](https://docs.google.com/presentation/d/1YXl3Z-FhuNcVnpjXQt2bWAiwhDQjI_dphw4qq7_xwX0/edit#slide=id.g555e874c95_0_5).
